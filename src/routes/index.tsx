@@ -1,26 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Hero } from "@/components/site/Hero";
+import { Benefits } from "@/components/site/Benefits";
+import { Products } from "@/components/site/Products";
+import { WhyUs } from "@/components/site/WhyUs";
+import { AboutBanner } from "@/components/site/AboutBanner";
+import { Retailers } from "@/components/site/Retailers";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Spark Toys — יותר ממשחק, עולם של למידה" },
+      {
+        name: "description",
+        content:
+          "צעצועים אינטראקטיביים בעברית עם שירים, צלילים ותוכן חינוכי עשיר שמפתחים ילדים בכל שלב — שפה, מוזיקה, חשיבה ומוטוריקה.",
+      },
+      { property: "og:title", content: "Spark Toys — יותר ממשחק, עולם של למידה" },
+      {
+        property: "og:description",
+        content: "צעצועים אינטראקטיביים בעברית שמפתחים ילדים דרך משחק, שירים ולמידה.",
+      },
+      { property: "og:type", content: "website" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main>
+        <Hero />
+        <Benefits />
+        <Products />
+        <WhyUs />
+        <AboutBanner />
+        <Retailers />
+      </main>
+      <Footer />
     </div>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
