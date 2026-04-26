@@ -160,10 +160,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mt-14 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p className="flex items-center gap-1.5">
             © 2024 Spark Toys. נוצר עם
-            <Heart className="h-3.5 w-3.5 fill-coral text-coral" />
+            <Heart className="h-4 w-4 fill-coral text-coral" />
             בישראל.
           </p>
           <div className="flex items-center gap-5">
