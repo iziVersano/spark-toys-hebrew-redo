@@ -138,16 +138,16 @@ export function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
             {columns.map((col) => (
               <div key={col.title}>
-                <h4 className="text-sm font-extrabold text-navy mb-4 flex items-center gap-2">
+                <h4 className="text-base font-extrabold text-navy mb-4 flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full ${dotColor[col.color]}`} />
                   {col.title}
                 </h4>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {col.links.map((l) => (
                     <li key={l}>
                       <a
                         href="#"
-                        className="text-sm text-muted-foreground hover:text-coral hover:translate-x-[-2px] inline-block transition-all"
+                        className="text-base text-muted-foreground hover:text-coral hover:translate-x-[-2px] inline-block transition-all"
                       >
                         {l}
                       </a>
