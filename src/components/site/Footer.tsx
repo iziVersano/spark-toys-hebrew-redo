@@ -88,7 +88,7 @@ export function Footer() {
             <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-soft">
               <img src={sparkLogo} alt="Spark Toys" className="h-9 w-auto" />
             </div>
-            <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-sm">
+            <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-sm">
               צעצועים אינטראקטיביים עם תוכן עשיר שמפתחים ילדים בעברית מלאה ובאהבה גדולה.
               כל מוצר נבחר בקפידה כדי להצית סקרנות וללוות התפתחות.
             </p>
