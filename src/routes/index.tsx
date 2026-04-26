@@ -50,10 +50,6 @@ function Index() {
         </main>
         <Footer />
       </div>
-
-      {/* Floating sparkles drift across the entire page, tying sections together.
-          Rendered above content but pointer-events-none keeps clicks working. */}
-      <SparkleField count={70} />
     </div>
   );
 }
