@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen">
       {/* Soft pastel blob field — fixed behind all content for a continuous, airy backdrop */}
       <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="blob bg-coral/60 h-[32rem] w-[32rem] -top-32 -right-24" style={{ opacity: 0.7 }} />
