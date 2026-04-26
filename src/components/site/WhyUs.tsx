@@ -10,7 +10,7 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-cream/60">
+    <section className="py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-14 leading-[1.05] text-balance">
           מה הופך את <span className="text-coral">Spark Toys</span> לשונים?
