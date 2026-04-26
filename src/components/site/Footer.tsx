@@ -68,7 +68,7 @@ export function Footer() {
               <Input
                 type="email"
                 placeholder="האימייל שלך"
-                className="border-0 bg-transparent text-navy placeholder:text-navy/50 focus-visible:ring-0 focus-visible:ring-offset-0 h-10 px-4 text-right"
+                className="border-0 bg-transparent text-navy placeholder:text-navy/50 focus-visible:ring-0 focus-visible:ring-offset-0 h-11 px-4 text-right text-base"
               />
               <Button
                 type="submit"
@@ -88,27 +88,27 @@ export function Footer() {
             <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-soft">
               <img src={sparkLogo} alt="Spark Toys" className="h-9 w-auto" />
             </div>
-            <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-sm">
+            <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-sm">
               צעצועים אינטראקטיביים עם תוכן עשיר שמפתחים ילדים בעברית מלאה ובאהבה גדולה.
               כל מוצר נבחר בקפידה כדי להצית סקרנות וללוות התפתחות.
             </p>
 
             {/* Contact chips */}
             <div className="mt-6 space-y-2.5">
-              <a href="tel:+972000000000" className="group flex items-center gap-3 text-sm text-navy/80 hover:text-coral transition-colors">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft group-hover:bg-coral group-hover:text-white text-coral flex items-center justify-center transition-colors">
+              <a href="tel:+972000000000" className="group flex items-center gap-3 text-base text-navy/80 hover:text-coral transition-colors">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft group-hover:bg-coral group-hover:text-white text-coral flex items-center justify-center transition-colors">
                   <Phone className="h-4 w-4" />
                 </span>
                 03-000-0000
               </a>
-              <a href="mailto:hello@sparktoys.co.il" className="group flex items-center gap-3 text-sm text-navy/80 hover:text-coral transition-colors">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft group-hover:bg-mint group-hover:text-white text-mint flex items-center justify-center transition-colors">
+              <a href="mailto:hello@sparktoys.co.il" className="group flex items-center gap-3 text-base text-navy/80 hover:text-coral transition-colors">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft group-hover:bg-mint group-hover:text-white text-mint flex items-center justify-center transition-colors">
                   <Mail className="h-4 w-4" />
                 </span>
                 hello@sparktoys.co.il
               </a>
-              <div className="flex items-center gap-3 text-sm text-navy/80">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft text-sky flex items-center justify-center">
+              <div className="flex items-center gap-3 text-base text-navy/80">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft text-sky flex items-center justify-center">
                   <MapPin className="h-4 w-4" />
                 </span>
                 תל אביב, ישראל
@@ -138,16 +138,16 @@ export function Footer() {
           <div className="col-span-2 md:col-span-3 lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
             {columns.map((col) => (
               <div key={col.title}>
-                <h4 className="text-sm font-extrabold text-navy mb-4 flex items-center gap-2">
+                <h4 className="text-base font-extrabold text-navy mb-4 flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full ${dotColor[col.color]}`} />
                   {col.title}
                 </h4>
-                <ul className="space-y-2.5">
+                <ul className="space-y-3">
                   {col.links.map((l) => (
                     <li key={l}>
                       <a
                         href="#"
-                        className="text-sm text-muted-foreground hover:text-coral hover:translate-x-[-2px] inline-block transition-all"
+                        className="text-base text-muted-foreground hover:text-coral hover:translate-x-[-2px] inline-block transition-all"
                       >
                         {l}
                       </a>
@@ -160,10 +160,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mt-14 pt-6 border-t border-border/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <p className="flex items-center gap-1.5">
             © 2024 Spark Toys. נוצר עם
-            <Heart className="h-3.5 w-3.5 fill-coral text-coral" />
+            <Heart className="h-4 w-4 fill-coral text-coral" />
             בישראל.
           </p>
           <div className="flex items-center gap-5">
