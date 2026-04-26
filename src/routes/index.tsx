@@ -35,9 +35,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative min-h-screen bg-background spark-flow overflow-hidden">
-      {/* Floating sparkles drift across the entire page, tying sections together */}
-      <SparkleField count={32} />
-
       <div className="relative z-10">
         <Header />
         <main>
@@ -53,6 +50,10 @@ function Index() {
         </main>
         <Footer />
       </div>
+
+      {/* Floating sparkles drift across the entire page, tying sections together.
+          Rendered above content but pointer-events-none keeps clicks working. */}
+      <SparkleField count={70} />
     </div>
   );
 }
