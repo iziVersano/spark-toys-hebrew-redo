@@ -5,8 +5,8 @@ export function Hero() {
   return (
     <section className="relative">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-2 sm:pb-4">
-        {/* Hero canvas */}
-        <div className="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
+        {/* Hero banner */}
+        <div className="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream min-h-[560px] sm:min-h-[600px] lg:min-h-[640px]">
           {/* Background image */}
           <img
             src={heroChild}
@@ -14,42 +14,58 @@ export function Hero() {
             width={1920}
             height={1200}
             loading="eager"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-[30%_center] lg:object-[20%_center]"
           />
 
-          {/* RTL gradient: cream on the right (text side) fading to transparent on the left (image side).
-              On mobile, fade vertically from bottom so text is readable above the child. */}
+          {/* Soft brand color wash on the image side for warmth */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-t from-cream via-cream/85 to-cream/10 lg:bg-gradient-to-l lg:from-cream lg:via-cream/85 lg:via-40% lg:to-transparent"
+            className="absolute inset-0 bg-gradient-to-tr from-coral-soft/20 via-transparent to-sky-soft/25 mix-blend-multiply pointer-events-none"
           />
 
-          {/* Subtle color wash for playful tone */}
+          {/* RTL gradient overlay - smooth blend from cream (text side, right) to transparent (image side, left).
+              Mobile: vertical fade from bottom so text reads above the child. */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-br from-coral-soft/30 via-transparent to-sky-soft/30 mix-blend-multiply pointer-events-none"
+            className="absolute inset-0 bg-gradient-to-t from-cream via-cream/92 via-35% to-cream/0 lg:bg-gradient-to-l lg:from-cream lg:from-25% lg:via-cream/85 lg:via-55% lg:to-transparent"
           />
 
-          {/* Floating playful accents */}
-          <div aria-hidden className="hidden sm:block absolute top-8 left-10 h-14 w-14 rounded-2xl bg-white/90 shadow-card flex items-center justify-center text-coral text-2xl rotate-[-8deg]">
+          {/* Extra soft radial glow behind the text block for premium depth */}
+          <div
+            aria-hidden
+            className="absolute inset-y-0 right-0 w-full lg:w-[60%] pointer-events-none"
+            style={{
+              background:
+                "radial-gradient(ellipse at 75% 50%, color-mix(in oklab, var(--sun) 14%, transparent) 0%, transparent 60%)",
+            }}
+          />
+
+          {/* Floating playful accents - kept on the image side so they don't cover text */}
+          <div
+            aria-hidden
+            className="hidden sm:flex absolute top-8 left-8 lg:top-10 lg:left-12 h-14 w-14 rounded-2xl bg-white/95 backdrop-blur shadow-card items-center justify-center text-coral text-2xl rotate-[-8deg]"
+          >
             <span className="leading-none">♪</span>
           </div>
-          <div aria-hidden className="hidden sm:block absolute bottom-12 left-1/3 h-12 w-12 rounded-2xl bg-white/90 shadow-card flex items-center justify-center text-mint text-xl rotate-[10deg]">
+          <div
+            aria-hidden
+            className="hidden sm:flex absolute bottom-24 left-1/4 h-12 w-12 rounded-2xl bg-white/95 backdrop-blur shadow-card items-center justify-center text-mint text-xl rotate-[10deg]"
+          >
             <span className="leading-none">♫</span>
           </div>
-          <div aria-hidden className="hidden lg:block absolute top-1/3 left-[42%] h-5 w-5 rounded-full bg-sun shadow-soft" />
-          <div aria-hidden className="hidden lg:block absolute bottom-20 left-16 h-3 w-3 rounded-full bg-coral" />
+          <div aria-hidden className="hidden lg:block absolute top-1/4 left-[38%] h-5 w-5 rounded-full bg-sun shadow-soft" />
+          <div aria-hidden className="hidden lg:block absolute bottom-32 left-20 h-3 w-3 rounded-full bg-coral" />
 
           {/* Content overlay */}
-          <div className="relative z-10 grid lg:grid-cols-12 gap-6 px-5 sm:px-8 lg:px-14 pt-10 sm:pt-14 lg:pt-20 pb-[55%] sm:pb-[42%] lg:pb-20">
-            <div className="lg:col-span-7 lg:col-start-6 text-center lg:text-right">
+          <div className="relative z-10 grid lg:grid-cols-12 gap-6 px-5 sm:px-8 lg:px-12 pt-8 sm:pt-12 lg:pt-16 pb-[58%] sm:pb-[44%] lg:pb-16">
+            <div className="lg:col-span-6 lg:col-start-7 text-center lg:text-right">
               {/* Tiny badge */}
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur px-4 py-1.5 text-sm text-navy/80 shadow-soft mb-4 sm:mb-5">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur px-4 py-1.5 text-sm text-navy/80 shadow-soft mb-4 sm:mb-5 ring-1 ring-black/5">
                 <span className="h-2 w-2 rounded-full bg-coral animate-pulse" />
                 חדש בקטלוג — סדרת המוסיקה
               </div>
 
-              <h1 className="font-display text-[2.25rem] sm:text-5xl lg:text-7xl font-extrabold leading-[1.05] text-navy text-balance drop-shadow-[0_1px_0_rgba(255,255,255,0.6)]">
+              <h1 className="font-display text-[2.25rem] sm:text-5xl lg:text-[4.25rem] xl:text-7xl font-extrabold leading-[1.05] text-navy text-balance">
                 יותר ממשחק,
                 <br />
                 <span className="text-coral">עולם של למידה.</span>
