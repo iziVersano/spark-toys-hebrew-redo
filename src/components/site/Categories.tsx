@@ -21,7 +21,7 @@ export function Categories() {
     <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-10 lg:mb-14">
-          <span className="text-coral text-base font-bold tracking-wider uppercase">
+          <span className="text-coral text-xl sm:text-2xl font-extrabold tracking-wider uppercase">
             קטגוריות
           </span>
           <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance text-navy leading-[1.05]">

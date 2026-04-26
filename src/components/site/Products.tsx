@@ -18,7 +18,7 @@ export function Products() {
     <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-12">
-          <span className="text-coral text-base font-bold tracking-wider uppercase">מוצרים מובילים</span>
+          <span className="text-coral text-xl sm:text-2xl font-extrabold tracking-wider uppercase">מוצרים מובילים</span>
           <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance leading-[1.05]">
             מוצרים שמובילים למשחק ולמידה
           </h2>
