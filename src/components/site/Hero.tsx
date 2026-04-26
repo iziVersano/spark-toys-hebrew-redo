@@ -1,4 +1,5 @@
 import { ArrowLeft, Play } from "lucide-react";
+
 import heroChild from "@/assets/hero-child.jpg";
 
 export function Hero() {
