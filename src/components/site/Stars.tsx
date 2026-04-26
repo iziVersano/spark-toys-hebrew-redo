@@ -19,7 +19,7 @@ const stars = [
 
 export function Stars() {
   return (
-    <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-cream/40">
+    <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-10 lg:mb-14">
           <span className="text-coral text-xl sm:text-2xl font-extrabold tracking-wider uppercase">
