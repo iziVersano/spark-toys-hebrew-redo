@@ -12,16 +12,16 @@ export function WhyUs() {
   return (
     <section className="py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-cream/60">
       <div className="mx-auto max-w-7xl">
-        <h2 className="text-center text-3xl sm:text-4xl font-extrabold mb-12">
+        <h2 className="text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-14 leading-[1.05] text-balance">
           מה הופך את <span className="text-coral">Spark Toys</span> לשונים?
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {reasons.map((r) => (
             <div key={r.title} className="flex flex-col items-center text-center">
-              <div className={`h-16 w-16 rounded-2xl flex items-center justify-center mb-3 ${r.bg}`}>
-                <r.icon className={`h-7 w-7 ${r.color}`} strokeWidth={2} />
+              <div className={`h-20 w-20 rounded-2xl flex items-center justify-center mb-4 ${r.bg}`}>
+                <r.icon className={`h-9 w-9 ${r.color}`} strokeWidth={2} />
               </div>
-              <p className="text-sm font-semibold text-navy max-w-[140px] leading-snug">{r.title}</p>
+              <p className="text-base lg:text-lg font-bold text-navy max-w-[170px] leading-snug">{r.title}</p>
             </div>
           ))}
         </div>

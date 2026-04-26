@@ -22,19 +22,19 @@ export function AboutBanner() {
           </div>
 
           <div className="text-center lg:text-right">
-            <Heart className="inline-block h-6 w-6 text-coral mb-3" fill="currentColor" />
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold leading-tight text-balance">
+            <Heart className="inline-block h-7 w-7 text-coral mb-4" fill="currentColor" />
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-balance">
               רגעים קטנים של משחק
               <br />
               <span className="text-mint">שהופכים ללמידה אמיתית.</span>
             </h2>
-            <p className="mt-5 text-muted-foreground text-base lg:text-lg leading-relaxed max-w-lg mx-auto lg:mr-0">
+            <p className="mt-6 text-muted-foreground text-lg lg:text-xl leading-relaxed max-w-lg mx-auto lg:mr-0">
               כל מוצר של Spark נועד לעודד סקרנות, לחזק ביטחון עצמי ולתמוך בהתפתחות
               של ילדכם דרך משחק, שירה וחוויה משותפת עם ההורים.
             </p>
-            <button className="mt-7 inline-flex items-center gap-2 h-12 px-6 rounded-full bg-navy text-primary-foreground font-semibold hover:shadow-pop transition-all hover:-translate-y-0.5">
+            <button className="mt-8 inline-flex items-center gap-2 h-13 px-7 rounded-full bg-navy text-primary-foreground font-bold text-base hover:shadow-pop transition-all hover:-translate-y-0.5">
               קראו על Spark
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-5 w-5" />
             </button>
           </div>
         </div>

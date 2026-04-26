@@ -10,21 +10,21 @@ export function Retailers() {
         <div className="relative bg-gradient-to-br from-lilac-soft via-sky-soft to-cream rounded-[36px] p-6 sm:p-10 lg:p-12 overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="text-center lg:text-right">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur px-4 py-1.5 text-sm text-navy/70 mb-4">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/70 backdrop-blur px-4 py-2 text-base font-semibold text-navy/80 mb-5">
                 <Store className="h-4 w-4" />
                 לקמעונאים ומפיצים
               </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight text-balance">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] text-balance">
                 שותפים להצלחה.
                 <br />
                 <span className="text-coral">בואו לעבוד איתנו.</span>
               </h2>
-              <p className="mt-4 text-muted-foreground text-base max-w-md mx-auto lg:mr-0">
+              <p className="mt-5 text-muted-foreground text-lg lg:text-xl max-w-md mx-auto lg:mr-0">
                 אנחנו עובדים עם רשתות וחנויות מובילות בישראל ומרחיבים את פעילותנו לשווקים בינלאומיים.
               </p>
-              <button className="mt-6 inline-flex items-center gap-2 h-12 px-6 rounded-full bg-white text-navy font-semibold border border-border hover:bg-navy hover:text-white hover:border-navy transition-all">
+              <button className="mt-7 inline-flex items-center gap-2 h-13 px-7 rounded-full bg-white text-navy font-bold text-base border border-border hover:bg-navy hover:text-white hover:border-navy transition-all">
                 לפרטים לקמעונאים
-                <ArrowLeft className="h-4 w-4" />
+                <ArrowLeft className="h-5 w-5" />
               </button>
             </div>
 
