@@ -10,7 +10,7 @@ import { AboutBanner } from "@/components/site/AboutBanner";
 import { Retailers } from "@/components/site/Retailers";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-import { SparkleField } from "@/components/site/SparkleField";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
