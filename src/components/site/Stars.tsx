@@ -71,7 +71,7 @@ function StarCard({ star }: { star: (typeof stars)[number] }) {
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
-      <h3 className="mt-4 text-base sm:text-lg font-bold text-navy group-hover:text-coral transition-colors">
+      <h3 className="mt-4 text-lg sm:text-xl font-extrabold text-navy group-hover:text-coral transition-colors">
         {star.name}
       </h3>
     </Link>
