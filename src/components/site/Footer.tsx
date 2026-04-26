@@ -95,20 +95,20 @@ export function Footer() {
 
             {/* Contact chips */}
             <div className="mt-6 space-y-2.5">
-              <a href="tel:+972000000000" className="group flex items-center gap-3 text-sm text-navy/80 hover:text-coral transition-colors">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft group-hover:bg-coral group-hover:text-white text-coral flex items-center justify-center transition-colors">
+              <a href="tel:+972000000000" className="group flex items-center gap-3 text-base text-navy/80 hover:text-coral transition-colors">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft group-hover:bg-coral group-hover:text-white text-coral flex items-center justify-center transition-colors">
                   <Phone className="h-4 w-4" />
                 </span>
                 03-000-0000
               </a>
-              <a href="mailto:hello@sparktoys.co.il" className="group flex items-center gap-3 text-sm text-navy/80 hover:text-coral transition-colors">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft group-hover:bg-mint group-hover:text-white text-mint flex items-center justify-center transition-colors">
+              <a href="mailto:hello@sparktoys.co.il" className="group flex items-center gap-3 text-base text-navy/80 hover:text-coral transition-colors">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft group-hover:bg-mint group-hover:text-white text-mint flex items-center justify-center transition-colors">
                   <Mail className="h-4 w-4" />
                 </span>
                 hello@sparktoys.co.il
               </a>
-              <div className="flex items-center gap-3 text-sm text-navy/80">
-                <span className="h-9 w-9 rounded-xl bg-white shadow-soft text-sky flex items-center justify-center">
+              <div className="flex items-center gap-3 text-base text-navy/80">
+                <span className="h-10 w-10 rounded-xl bg-white shadow-soft text-sky flex items-center justify-center">
                   <MapPin className="h-4 w-4" />
                 </span>
                 תל אביב, ישראל
