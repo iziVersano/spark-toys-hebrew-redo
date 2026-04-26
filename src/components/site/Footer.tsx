@@ -68,7 +68,7 @@ export function Footer() {
               <Input
                 type="email"
                 placeholder="האימייל שלך"
-                className="border-0 bg-transparent text-navy placeholder:text-navy/50 focus-visible:ring-0 focus-visible:ring-offset-0 h-10 px-4 text-right"
+                className="border-0 bg-transparent text-navy placeholder:text-navy/50 focus-visible:ring-0 focus-visible:ring-offset-0 h-11 px-4 text-right text-base"
               />
               <Button
                 type="submit"
