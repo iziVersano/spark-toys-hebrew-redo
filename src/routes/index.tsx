@@ -34,7 +34,17 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative min-h-screen bg-background spark-flow overflow-hidden">
+    <div className="relative min-h-screen bg-background overflow-hidden">
+      {/* Soft pastel blob field — fixed behind all content for a continuous, airy backdrop */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+        <div className="blob bg-coral/35 h-[28rem] w-[28rem] -top-32 -right-24" />
+        <div className="blob bg-sky/30 h-[24rem] w-[24rem] top-[18%] -left-32" />
+        <div className="blob bg-sun/30 h-[22rem] w-[22rem] top-[40%] right-[10%]" />
+        <div className="blob bg-mint/30 h-[26rem] w-[26rem] top-[62%] -left-20" />
+        <div className="blob bg-lilac/30 h-[24rem] w-[24rem] top-[80%] right-[-6rem]" />
+        <div className="blob bg-coral/25 h-[20rem] w-[20rem] bottom-[5%] left-[20%]" />
+      </div>
+
       <div className="relative z-10">
         <Header />
         <main>
