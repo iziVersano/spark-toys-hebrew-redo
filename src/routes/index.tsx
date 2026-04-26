@@ -10,6 +10,7 @@ import { AboutBanner } from "@/components/site/AboutBanner";
 import { Retailers } from "@/components/site/Retailers";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import { SparkleField } from "@/components/site/SparkleField";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,20 +34,25 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <main>
-        <Hero />
-        <Categories />
-        <Stars />
-        <Benefits />
-        <Products />
-        <WhyUs />
-        <AboutBanner />
-        <Retailers />
-        <Contact />
-      </main>
-      <Footer />
+    <div className="relative min-h-screen bg-background spark-flow overflow-hidden">
+      {/* Floating sparkles drift across the entire page, tying sections together */}
+      <SparkleField count={32} />
+
+      <div className="relative z-10">
+        <Header />
+        <main>
+          <Hero />
+          <Categories />
+          <Stars />
+          <Benefits />
+          <Products />
+          <WhyUs />
+          <AboutBanner />
+          <Retailers />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
