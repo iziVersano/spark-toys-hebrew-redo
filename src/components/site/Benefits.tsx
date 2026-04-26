@@ -34,11 +34,11 @@ export function Benefits() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {benefits.map((b) => (
             <div key={b.title} className="flex flex-col items-center text-center group">
-              <div className={`h-16 w-16 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${b.color}`}>
-                <b.icon className="h-7 w-7" strokeWidth={2.2} />
+              <div className={`h-20 w-20 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${b.color}`}>
+                <b.icon className="h-9 w-9" strokeWidth={2.2} />
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-navy">{b.title}</h3>
-              <p className="text-sm text-muted-foreground mt-1.5 leading-snug max-w-[210px]">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold text-navy">{b.title}</h3>
+              <p className="text-base text-muted-foreground mt-2 leading-snug max-w-[230px]">
                 {b.desc}
               </p>
             </div>

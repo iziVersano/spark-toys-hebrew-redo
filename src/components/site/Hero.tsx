@@ -9,18 +9,18 @@ export function Hero() {
           <div className="grid lg:grid-cols-2 min-h-[520px] lg:min-h-[600px]">
             {/* TEXT PANEL — right side in RTL */}
             <div className="relative z-10 order-2 lg:order-1 bg-cream px-6 sm:px-10 lg:px-14 py-10 lg:py-16 flex flex-col justify-center text-right">
-              <div className="inline-flex self-end items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm text-navy/80 shadow-soft mb-5 ring-1 ring-black/5">
+              <div className="inline-flex self-end items-center gap-2 rounded-full bg-white px-4 py-2 text-base font-semibold text-navy/80 shadow-soft mb-6 ring-1 ring-black/5">
                 <span className="h-2 w-2 rounded-full bg-coral animate-pulse" />
                 חדש בקטלוג — סדרת המוסיקה
               </div>
 
-              <h1 className="font-display text-[2.5rem] sm:text-5xl lg:text-[4rem] xl:text-[4.5rem] font-extrabold leading-[1.05] text-navy text-balance">
+              <h1 className="font-display text-[2.75rem] sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem] font-extrabold leading-[1.02] text-navy text-balance">
                 יותר ממשחק,
                 <br />
                 <span className="text-coral">עולם של למידה.</span>
               </h1>
 
-              <p className="mt-5 text-base sm:text-lg text-navy/70 leading-relaxed max-w-md mr-0 ml-auto lg:ml-0">
+              <p className="mt-6 text-lg sm:text-xl text-navy/75 leading-relaxed max-w-md mr-0 ml-auto lg:ml-0">
                 Spark Toys יוצרים צעצועים אינטראקטיביים וחינוכיים שעוזרים
                 לילדים להתפתח דרך מוסיקה, צלילים ומשחק.
               </p>

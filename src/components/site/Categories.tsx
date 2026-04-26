@@ -21,13 +21,13 @@ export function Categories() {
     <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-10 lg:mb-14">
-          <span className="text-coral text-sm font-semibold tracking-wider uppercase">
+          <span className="text-coral text-base font-bold tracking-wider uppercase">
             קטגוריות
           </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-balance text-navy">
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance text-navy leading-[1.05]">
             גלו עולם של משחק ולמידה
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
+          <p className="mt-4 text-lg sm:text-xl text-muted-foreground max-w-2xl">
             מגוון רחב של קטגוריות שיתאימו לכל ילד ולכל שלב התפתחותי.
           </p>
         </div>
@@ -55,7 +55,7 @@ export function Categories() {
                   <ArrowLeft className="h-4 w-4" />
                 </div>
               </div>
-              <h3 className="mt-3 sm:mt-4 text-sm sm:text-base lg:text-lg font-bold text-navy group-hover:text-coral transition-colors">
+              <h3 className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl font-bold text-navy group-hover:text-coral transition-colors">
                 {cat.name}
               </h3>
             </Link>

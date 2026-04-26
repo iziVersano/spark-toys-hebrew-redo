@@ -22,13 +22,13 @@ export function Stars() {
     <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-cream/40">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-10 lg:mb-14">
-          <span className="text-coral text-sm font-semibold tracking-wider uppercase">
+          <span className="text-coral text-base font-bold tracking-wider uppercase">
             כוכבי הילדים
           </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-balance text-navy">
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance text-navy leading-[1.05]">
             הדמויות האהובות בעברית
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
+          <p className="mt-4 text-lg sm:text-xl text-muted-foreground max-w-2xl">
             הכירו את הכוכבים שמלווים את הילדים בכל משחק, שיר וסיפור.
           </p>
         </div>
@@ -71,7 +71,7 @@ function StarCard({ star }: { star: (typeof stars)[number] }) {
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
       </div>
-      <h3 className="mt-4 text-sm sm:text-base font-bold text-navy group-hover:text-coral transition-colors">
+      <h3 className="mt-4 text-base sm:text-lg font-bold text-navy group-hover:text-coral transition-colors">
         {star.name}
       </h3>
     </Link>

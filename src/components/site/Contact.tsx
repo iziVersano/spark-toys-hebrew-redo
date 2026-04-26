@@ -65,13 +65,13 @@ export function Contact() {
     <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-cream/40">
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center text-center mb-10">
-          <span className="text-coral text-sm font-semibold tracking-wider uppercase">
+          <span className="text-coral text-base font-bold tracking-wider uppercase">
             יצירת קשר
           </span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-balance text-navy">
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance text-navy leading-[1.05]">
             צרו איתנו קשר
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
+          <p className="mt-4 text-lg sm:text-xl text-muted-foreground max-w-2xl">
             נשמח לשמוע מכם — השאירו פרטים ונחזור אליכם בהקדם.
           </p>
         </div>
@@ -84,7 +84,7 @@ export function Contact() {
         >
           <div className="grid sm:grid-cols-2 gap-6">
             <div className="space-y-2 text-right">
-              <Label htmlFor="name" className="text-navy font-semibold">
+              <Label htmlFor="name" className="text-base text-navy font-bold">
                 שם
               </Label>
               <Input
@@ -101,7 +101,7 @@ export function Contact() {
             </div>
 
             <div className="space-y-2 text-right">
-              <Label htmlFor="phone" className="text-navy font-semibold">
+              <Label htmlFor="phone" className="text-base text-navy font-bold">
                 טלפון
               </Label>
               <Input
@@ -119,7 +119,7 @@ export function Contact() {
           </div>
 
           <div className="space-y-2 text-right">
-            <Label htmlFor="email" className="text-navy font-semibold">
+            <Label htmlFor="email" className="text-base text-navy font-bold">
               אימייל
             </Label>
             <Input
@@ -147,7 +147,7 @@ export function Contact() {
               />
               <Label
                 htmlFor="consent"
-                className="text-sm text-navy/80 leading-relaxed cursor-pointer text-right"
+                className="text-base text-navy/80 leading-relaxed cursor-pointer text-right"
               >
                 מאשר/ת יצירת קשר בטלפון | SMS | וואטסאפ | מייל
               </Label>

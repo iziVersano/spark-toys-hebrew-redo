@@ -18,11 +18,11 @@ export function Products() {
     <section className="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center mb-12">
-          <span className="text-coral text-sm font-semibold tracking-wider uppercase">מוצרים מובילים</span>
-          <h2 className="mt-2 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-balance">
+          <span className="text-coral text-base font-bold tracking-wider uppercase">מוצרים מובילים</span>
+          <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance leading-[1.05]">
             מוצרים שמובילים למשחק ולמידה
           </h2>
-          <p className="mt-3 text-muted-foreground max-w-xl">
+          <p className="mt-4 text-lg sm:text-xl text-muted-foreground max-w-2xl">
             אוסף מובחר של צעצועים אינטראקטיביים שילדים אוהבים והורים בוחרים שוב ושוב.
           </p>
         </div>
@@ -43,12 +43,12 @@ export function Products() {
                   className="w-[78%] h-[78%] object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md"
                 />
               </div>
-              <h3 className="text-[15px] sm:text-base font-bold text-navy line-clamp-1">{p.name}</h3>
-              <p className="text-xs text-muted-foreground mt-1 line-clamp-2 leading-snug min-h-[32px]">
+              <h3 className="text-base sm:text-lg font-bold text-navy line-clamp-1">{p.name}</h3>
+              <p className="text-sm text-muted-foreground mt-1.5 line-clamp-2 leading-snug min-h-[40px]">
                 {p.desc}
               </p>
               <div className="mt-3 flex items-center justify-between">
-                <div className="text-navy font-bold text-lg">
+                <div className="text-navy font-extrabold text-xl">
                   ₪{p.price}
                 </div>
                 <button
@@ -63,9 +63,9 @@ export function Products() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <button className="inline-flex items-center gap-2 h-12 px-6 rounded-full bg-navy text-primary-foreground font-semibold hover:shadow-pop transition-all hover:-translate-y-0.5">
+          <button className="inline-flex items-center gap-2 h-13 px-7 rounded-full bg-navy text-primary-foreground font-bold text-base hover:shadow-pop transition-all hover:-translate-y-0.5">
             צפו בכל המוצרים
-            <ArrowLeft className="h-4 w-4" />
+            <ArrowLeft className="h-5 w-5" />
           </button>
         </div>
       </div>
