@@ -36,7 +36,7 @@ function Index() {
   return (
     <div className="relative min-h-screen">
       {/* Soft pastel blob field — fixed behind all content for a continuous, airy backdrop */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden hidden md:block">
         <div className="blob bg-coral/60 h-[32rem] w-[32rem] -top-32 -right-24" style={{ opacity: 0.7 }} />
         <div className="blob bg-sky/55 h-[28rem] w-[28rem] top-[15%] -left-32" style={{ opacity: 0.7 }} />
         <div className="blob bg-sun/55 h-[26rem] w-[26rem] top-[40%] right-[8%]" style={{ opacity: 0.7 }} />
