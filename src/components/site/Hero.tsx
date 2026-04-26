@@ -25,20 +25,20 @@ export function Hero() {
                 לילדים להתפתח דרך מוסיקה, צלילים ומשחק.
               </p>
 
-              <div className="mt-7 flex flex-col sm:flex-row gap-3 sm:justify-end">
-                <button className="group inline-flex items-center justify-center gap-2 h-13 px-7 rounded-full bg-navy text-primary-foreground font-semibold text-[15px] shadow-card hover:shadow-pop transition-all hover:-translate-y-0.5">
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:justify-end">
+                <button className="group inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-navy text-primary-foreground font-bold text-base shadow-card hover:shadow-pop transition-all hover:-translate-y-0.5">
                   גלו את המוצרים
-                  <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+                  <ArrowLeft className="h-5 w-5 group-hover:-translate-x-1 transition-transform" />
                 </button>
-                <button className="inline-flex items-center justify-center gap-2 h-13 px-7 rounded-full bg-white text-navy font-semibold text-[15px] border border-border hover:border-navy/30 transition-all">
-                  <Play className="h-4 w-4 fill-coral text-coral" />
+                <button className="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-white text-navy font-bold text-base border border-border hover:border-navy/30 transition-all">
+                  <Play className="h-5 w-5 fill-coral text-coral" />
                   לפי שלבי התפתחות
                 </button>
               </div>
 
-              <div className="mt-7 flex flex-wrap justify-end items-center gap-x-5 gap-y-2 text-sm text-navy/65">
-                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-mint" /> תוכן בעברית מלאה</span>
-                <span className="flex items-center gap-2"><span className="h-1.5 w-1.5 rounded-full bg-sky" /> מותאם לגילאי 0–3+</span>
+              <div className="mt-8 flex flex-wrap justify-end items-center gap-x-6 gap-y-2 text-base font-medium text-navy/70">
+                <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-mint" /> תוכן בעברית מלאה</span>
+                <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-sky" /> מותאם לגילאי 0–3+</span>
               </div>
             </div>
 
