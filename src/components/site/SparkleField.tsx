@@ -28,12 +28,12 @@ function seeded(i: number, salt: number) {
  * twinkling 4-point sparkles in the brand pastel palette.
  * Sits behind all content; doesn't intercept pointer events.
  */
-export function SparkleField({ count = 28 }: { count?: number }) {
+export function SparkleField({ count = 60 }: { count?: number }) {
   const sparkles = useMemo<Sparkle[]>(() => {
     return Array.from({ length: count }, (_, i) => ({
       top: `${seeded(i, 1) * 100}%`,
       left: `${seeded(i, 2) * 100}%`,
-      size: 8 + Math.floor(seeded(i, 3) * 18),
+      size: 14 + Math.floor(seeded(i, 3) * 26),
       delay: `${(seeded(i, 4) * 6).toFixed(2)}s`,
       duration: `${(3 + seeded(i, 5) * 4).toFixed(2)}s`,
       color: PALETTE[Math.floor(seeded(i, 6) * PALETTE.length)],
@@ -44,7 +44,7 @@ export function SparkleField({ count = 28 }: { count?: number }) {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
     >
       {sparkles.map((s, i) => (
         <svg
