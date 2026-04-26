@@ -55,7 +55,7 @@ export function Categories() {
                   <ArrowLeft className="h-4 w-4" />
                 </div>
               </div>
-              <h3 className="mt-4 sm:mt-5 text-base sm:text-lg lg:text-xl font-bold text-navy group-hover:text-coral transition-colors">
+              <h3 className="mt-4 sm:mt-5 text-lg sm:text-xl lg:text-2xl font-extrabold text-navy group-hover:text-coral transition-colors">
                 {cat.name}
               </h3>
             </Link>
