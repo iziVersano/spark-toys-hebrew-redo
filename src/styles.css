@@ -138,4 +138,24 @@
     opacity: 0.6;
     pointer-events: none;
   }
+
+  /* Sparkle twinkle animation — used by SparkleField */
+  @keyframes spark-twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+    50% { opacity: 0.55; transform: scale(1) rotate(45deg); }
+  }
+  .spark-twinkle {
+    animation-name: spark-twinkle;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    will-change: transform, opacity;
+  }
+
+  /* Soft section-to-section gradient flow */
+  .spark-flow {
+    background:
+      radial-gradient(60% 40% at 80% 0%, color-mix(in oklab, var(--coral) 10%, transparent), transparent 70%),
+      radial-gradient(50% 35% at 20% 50%, color-mix(in oklab, var(--sky) 10%, transparent), transparent 70%),
+      radial-gradient(55% 35% at 70% 100%, color-mix(in oklab, var(--sun) 10%, transparent), transparent 70%);
+  }
 }
