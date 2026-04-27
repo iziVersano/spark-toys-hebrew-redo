@@ -1,9 +1,0 @@
-{
-  "/_not-found/page": "/_not-found",
-  "/api/categories/route": "/api/categories",
-  "/api/products/route": "/api/products",
-  "/category/[slug]/page": "/category/[slug]",
-  "/product/[slug]/page": "/product/[slug]",
-  "/page": "/",
-  "/shop/page": "/shop"
-}
