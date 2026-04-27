@@ -1,4 +1,21 @@
 <?php
+// DEBUG - show all hooked actions on wp_footer
+global $wp_filter;
+if (isset($wp_filter['wp_footer'])) {
+    echo '<!-- WP FOOTER HOOKS: ';
+    foreach ($wp_filter['wp_footer']->callbacks as $priority => $callbacks) {
+        foreach ($callbacks as $callback) {
+            if (is_array($callback['function'])) {
+                echo $priority . ': ' . get_class($callback['function'][0]) . '::' . $callback['function'][1] . ' | ';
+            } elseif (is_string($callback['function'])) {
+                echo $priority . ': ' . $callback['function'] . ' | ';
+            }
+        }
+    }
+    echo ' -->';
+}
+?>
+<?php
 // FIX 4 — Block all Bridge/Qode plugin output before footer renders
 remove_all_actions('qode_after_page_content');
 remove_all_actions('bridge_after_page_content');
