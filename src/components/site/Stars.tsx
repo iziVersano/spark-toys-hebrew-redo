@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
+import Image from "next/image";
 import yuval from "@/assets/star-yuval.jpg";
 import michal from "@/assets/star-michal.jpg";
 import miki from "@/assets/star-miki.jpg";
@@ -6,15 +7,16 @@ import haim from "@/assets/star-haim.jpg";
 import kofiko from "@/assets/star-kofiko.jpg";
 import luli from "@/assets/star-luli.jpg";
 import shoshana from "@/assets/star-shoshana.jpg";
+import type { StaticImageData } from "next/image";
 
 const stars = [
-  { name: "יובל המבולבל", img: yuval, ring: "ring-coral/40", bg: "bg-coral-soft" },
-  { name: "מיכל הקטנה", img: michal, ring: "ring-sun/50", bg: "bg-sun-soft" },
-  { name: "מיקי", img: miki, ring: "ring-mint/50", bg: "bg-mint-soft" },
-  { name: "הדוד חיים", img: haim, ring: "ring-sky/50", bg: "bg-sky-soft" },
-  { name: "קופיקו", img: kofiko, ring: "ring-lilac/50", bg: "bg-lilac-soft" },
-  { name: "לולי", img: luli, ring: "ring-sky/50", bg: "bg-sky-soft" },
-  { name: "הכבשה שושנה", img: shoshana, ring: "ring-coral/40", bg: "bg-coral-soft" },
+  { name: "יובל המבולבל", img: yuval, ring: "ring-coral/40", bg: "bg-coral-soft", href: "/stars/yuval" },
+  { name: "מיכל הקטנה", img: michal, ring: "ring-sun/50", bg: "bg-sun-soft", href: "/stars/michal" },
+  { name: "מיקי", img: miki, ring: "ring-mint/50", bg: "bg-mint-soft", href: "/stars/miki" },
+  { name: "הדוד חיים", img: haim, ring: "ring-sky/50", bg: "bg-sky-soft", href: "/stars/haim" },
+  { name: "קופיקו", img: kofiko, ring: "ring-lilac/50", bg: "bg-lilac-soft", href: "/stars/kofiko" },
+  { name: "לולי", img: luli, ring: "ring-sky/50", bg: "bg-sky-soft", href: "/stars/luli" },
+  { name: "הכבשה שושנה", img: shoshana, ring: "ring-coral/40", bg: "bg-coral-soft", href: "/stars/shoshana" },
 ];
 
 export function Stars() {
@@ -53,22 +55,22 @@ export function Stars() {
   );
 }
 
-function StarCard({ star }: { star: (typeof stars)[number] }) {
+function StarCard({ star }: { star: { name: string; img: StaticImageData; ring: string; bg: string; href: string } }) {
   return (
     <Link
-      to="/"
+      href={star.href}
       className="group flex flex-col items-center text-center w-28 sm:w-32 md:w-auto shrink-0"
     >
       <div
         className={`relative aspect-square w-28 sm:w-32 md:w-full rounded-full overflow-hidden ${star.bg} ring-4 ${star.ring} ring-offset-4 ring-offset-background transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-card`}
       >
-        <img
+        <Image
           src={star.img}
           alt={star.name}
+          fill
           loading="lazy"
-          width={512}
-          height={512}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 768px) 112px, (max-width: 1024px) 128px, 160px"
         />
       </div>
       <h3 className="mt-4 text-lg sm:text-xl font-extrabold text-navy group-hover:text-coral transition-colors">

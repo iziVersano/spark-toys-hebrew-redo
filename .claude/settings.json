@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(open\\('/tmp/wc-cats.json'\\)\\); print\\(json.dumps\\(data[:3], indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(open\\('/tmp/wc-cats.json'\\)\\); [print\\(json.dumps\\({'id':c['id'],'name':c['name'],'slug':c['slug'],'count':c['count'],'has_image': bool\\(c.get\\('image'\\)\\)}, ensure_ascii=False\\)\\) for c in data]\")",
+      "Bash(python3 -c ' *)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo remote -v)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo log --oneline -5)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo fetch origin)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo diff --stat HEAD origin/main)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo show origin/main:package.json)",
+      "Bash(git checkout *)",
+      "Bash(git add *)"
+    ]
+  }
+}

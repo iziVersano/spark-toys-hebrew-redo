@@ -1,4 +1,5 @@
 import { Heart, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import family from "@/assets/about-family.jpg";
 
 export function AboutBanner() {
@@ -9,14 +10,14 @@ export function AboutBanner() {
           <div className="blob bg-coral-soft -top-10 -left-10 h-48 w-48" />
 
           <div className="relative">
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card">
-              <img
+            <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-card relative">
+              <Image
                 src={family}
                 alt="אמא ובת משחקות יחד עם המיקרופון של Spark"
+                fill
                 loading="lazy"
-                width={1024}
-                height={768}
-                className="w-full h-full object-cover"
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
           </div>

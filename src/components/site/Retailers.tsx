@@ -1,4 +1,5 @@
 import { Store, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 import productCube from "@/assets/product-cube.png";
 import productClock from "@/assets/product-clock.png";
 import productMic from "@/assets/product-mic.png";
@@ -29,9 +30,9 @@ export function Retailers() {
             </div>
 
             <div className="relative h-56 sm:h-72 lg:h-80">
-              <img src={productCube} alt="" loading="lazy" className="absolute right-2 sm:right-12 top-4 h-40 sm:h-56 drop-shadow-xl rotate-[-6deg]" />
-              <img src={productClock} alt="" loading="lazy" className="absolute right-32 sm:right-52 bottom-0 h-36 sm:h-48 drop-shadow-xl rotate-[5deg]" />
-              <img src={productMic} alt="" loading="lazy" className="absolute left-2 sm:left-8 bottom-4 h-44 sm:h-60 drop-shadow-xl rotate-[10deg]" />
+              <Image src={productCube} alt="" loading="lazy" className="absolute right-2 sm:right-12 top-4 h-40 sm:h-56 w-auto drop-shadow-xl rotate-[-6deg]" />
+              <Image src={productClock} alt="" loading="lazy" className="absolute right-32 sm:right-52 bottom-0 h-36 sm:h-48 w-auto drop-shadow-xl rotate-[5deg]" />
+              <Image src={productMic} alt="" loading="lazy" className="absolute left-2 sm:left-8 bottom-4 h-44 sm:h-60 w-auto drop-shadow-xl rotate-[10deg]" />
             </div>
           </div>
         </div>

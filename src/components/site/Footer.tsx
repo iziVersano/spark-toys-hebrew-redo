@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin, Send, Heart, Sparkles } from "lucide-react";
+import Image from "next/image";
 import sparkLogo from "@/assets/spark-logo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,27 +8,52 @@ const columns = [
   {
     title: "מוצרים",
     color: "coral",
-    links: ["כל המוצרים", "חדשים", "מוצרים מובילים", "מבצעים"],
+    links: [
+      { label: "כל המוצרים", href: "/shop" },
+      { label: "חדשים", href: "/shop?sort=newest" },
+      { label: "מוצרים מובילים", href: "/shop?sort=popular" },
+      { label: "מבצעים", href: "/shop?sale=1" },
+    ],
   },
   {
     title: "לפי גיל",
     color: "mint",
-    links: ["0–1 שנים", "1–2 שנים", "2–3 שנים", "3+ שנים"],
+    links: [
+      { label: "0–1 שנים", href: "/age/0-1" },
+      { label: "1–2 שנים", href: "/age/1-2" },
+      { label: "2–3 שנים", href: "/age/2-3" },
+      { label: "3+ שנים", href: "/age/3-plus" },
+    ],
   },
   {
     title: "לפי התפתחות",
     color: "sky",
-    links: ["פיתוח שפה", "מוזיקה וקצב", "חשיבה ולמידה", "מוטוריקה"],
+    links: [
+      { label: "פיתוח שפה", href: "/development/language" },
+      { label: "מוזיקה וקצב", href: "/development/music" },
+      { label: "חשיבה ולמידה", href: "/development/cognitive" },
+      { label: "מוטוריקה", href: "/development/motor" },
+    ],
   },
   {
     title: "שירות לקוחות",
     color: "sun",
-    links: ["משלוחים והחזרות", "שאלות נפוצות", "מדיניות פרטיות", "טלפון"],
+    links: [
+      { label: "משלוחים והחזרות", href: "/shipping" },
+      { label: "שאלות נפוצות", href: "/faq" },
+      { label: "מדיניות פרטיות", href: "/privacy" },
+      { label: "טלפון", href: "tel:+972000000000" },
+    ],
   },
   {
     title: "אודות",
     color: "lilac",
-    links: ["Spark Toys", "הסיפור שלנו", "ביקורות", "בלוג"],
+    links: [
+      { label: "Spark Toys", href: "/about" },
+      { label: "הסיפור שלנו", href: "/about#story" },
+      { label: "ביקורות", href: "/reviews" },
+      { label: "בלוג", href: "/blog" },
+    ],
   },
 ];
 
@@ -42,13 +68,12 @@ const dotColor: Record<string, string> = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-cream/50 border-t border-border/60">
-      {/* Decorative blobs */}
       <div className="blob bg-coral/25 h-72 w-72 -top-20 -right-20" />
       <div className="blob bg-sky/25 h-80 w-80 top-40 -left-24" />
       <div className="blob bg-sun/25 h-64 w-64 bottom-0 right-1/3" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-10">
-        {/* Newsletter hero strip */}
+        {/* Newsletter strip */}
         <div className="relative rounded-3xl overflow-hidden mb-16 shadow-pop">
           <div className="bg-gradient-to-l from-coral via-coral to-sun px-6 sm:px-10 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-6">
             <div className="flex items-start gap-4 text-right">
@@ -86,14 +111,13 @@ export function Footer() {
           {/* Brand block */}
           <div className="col-span-2 md:col-span-3 lg:col-span-4">
             <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-soft">
-              <img src={sparkLogo} alt="Spark Toys" className="h-9 w-auto" />
+              <Image src={sparkLogo} alt="Spark Toys" height={36} className="w-auto" />
             </div>
             <p className="mt-5 text-base text-muted-foreground leading-relaxed max-w-sm">
               צעצועים אינטראקטיביים עם תוכן עשיר שמפתחים ילדים בעברית מלאה ובאהבה גדולה.
               כל מוצר נבחר בקפידה כדי להצית סקרנות וללוות התפתחות.
             </p>
 
-            {/* Contact chips */}
             <div className="mt-6 space-y-2.5">
               <a href="tel:+972000000000" className="group flex items-center gap-3 text-base text-navy/80 hover:text-coral transition-colors">
                 <span className="h-10 w-10 rounded-xl bg-white shadow-soft group-hover:bg-coral group-hover:text-white text-coral flex items-center justify-center transition-colors">
@@ -115,17 +139,16 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Socials */}
             <div className="flex items-center gap-2 mt-6">
               {[
-                { Icon: Facebook, hover: "hover:bg-sky" },
-                { Icon: Instagram, hover: "hover:bg-coral" },
-                { Icon: Youtube, hover: "hover:bg-sun" },
-              ].map(({ Icon, hover }, i) => (
+                { Icon: Facebook, hover: "hover:bg-sky", label: "Facebook" },
+                { Icon: Instagram, hover: "hover:bg-coral", label: "Instagram" },
+                { Icon: Youtube, hover: "hover:bg-sun", label: "YouTube" },
+              ].map(({ Icon, hover, label }) => (
                 <a
-                  key={i}
+                  key={label}
                   href="#"
-                  aria-label="social"
+                  aria-label={label}
                   className={`h-10 w-10 rounded-xl bg-white shadow-soft flex items-center justify-center text-navy ${hover} hover:text-white transition-all duration-300 hover:-translate-y-0.5`}
                 >
                   <Icon className="h-4 w-4" />
@@ -144,12 +167,12 @@ export function Footer() {
                 </h4>
                 <ul className="space-y-3">
                   {col.links.map((l) => (
-                    <li key={l}>
+                    <li key={l.label}>
                       <a
-                        href="#"
+                        href={l.href}
                         className="text-base text-muted-foreground hover:text-coral hover:translate-x-[-2px] inline-block transition-all"
                       >
-                        {l}
+                        {l.label}
                       </a>
                     </li>
                   ))}
@@ -167,11 +190,11 @@ export function Footer() {
             בישראל.
           </p>
           <div className="flex items-center gap-5">
-            <a href="#" className="hover:text-navy transition-colors">תקנון</a>
+            <a href="/terms" className="hover:text-navy transition-colors">תקנון</a>
             <span className="h-1 w-1 rounded-full bg-navy/30" />
-            <a href="#" className="hover:text-navy transition-colors">מדיניות פרטיות</a>
+            <a href="/privacy" className="hover:text-navy transition-colors">מדיניות פרטיות</a>
             <span className="h-1 w-1 rounded-full bg-navy/30" />
-            <a href="#" className="hover:text-navy transition-colors">משלוחים והחזרות</a>
+            <a href="/shipping" className="hover:text-navy transition-colors">משלוחים והחזרות</a>
           </div>
         </div>
       </div>

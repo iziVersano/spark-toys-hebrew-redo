@@ -1,59 +1,64 @@
-import { Link } from "@tanstack/react-router";
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
 import { Search, User, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import sparkLogo from "@/assets/spark-logo.png";
+import { useCart } from "@/lib/cart";
 
 type NavItem = {
   label: string;
-  to: string;
-  children?: { label: string; to: string }[];
+  href: string;
+  children?: { label: string; href: string }[];
 };
 
 const navItems: NavItem[] = [
-  { label: "בית", to: "/" },
+  { label: "בית", href: "/" },
   {
     label: "המוצרים שלנו",
-    to: "/",
+    href: "/shop",
     children: [
-      { label: "צעצועי עץ", to: "/" },
-      { label: "Spark BloX אבני הרכבה", to: "/" },
-      { label: "ספרים אינטראקטיביים", to: "/" },
-      { label: "צעצועי התפתחות", to: "/" },
-      { label: "בובות", to: "/" },
-      { label: "רובוטים", to: "/" },
-      { label: "מוסיקה וכלי נגינה", to: "/" },
-      { label: "מולטימדיה", to: "/" },
+      { label: "צעצועי עץ", href: "/category/wooden-toys" },
+      { label: "Spark BloX אבני הרכבה", href: "/category/spark-blox" },
+      { label: "ספרים אינטראקטיביים", href: "/category/interactive-books" },
+      { label: "צעצועי התפתחות", href: "/category/development-toys" },
+      { label: "בובות", href: "/category/dolls" },
+      { label: "רובוטים", href: "/category/robots" },
+      { label: "מוסיקה וכלי נגינה", href: "/category/music" },
+      { label: "מולטימדיה", href: "/category/multimedia" },
     ],
   },
   {
     label: "כוכבי הילדים",
-    to: "/",
+    href: "/stars",
     children: [
-      { label: "יובל המבולבל", to: "/" },
-      { label: "מיכל הקטנה", to: "/" },
-      { label: "מיקי", to: "/" },
-      { label: "הדוד חיים", to: "/" },
-      { label: "קופיקו", to: "/" },
-      { label: "לולי", to: "/" },
-      { label: "הכבשה שושנה", to: "/" },
+      { label: "יובל המבולבל", href: "/stars/yuval" },
+      { label: "מיכל הקטנה", href: "/stars/michal" },
+      { label: "מיקי", href: "/stars/miki" },
+      { label: "הדוד חיים", href: "/stars/haim" },
+      { label: "קופיקו", href: "/stars/kofiko" },
+      { label: "לולי", href: "/stars/luli" },
+      { label: "הכבשה שושנה", href: "/stars/shoshana" },
     ],
   },
-  { label: "מרכיבי ההתפתחות", to: "/" },
-  { label: "פורטל ההורדות ספרקי", to: "/" },
-  { label: "ספרק קנדי", to: "/" },
-  { label: "צרו קשר", to: "/" },
+  { label: "מרכיבי ההתפתחות", href: "/development" },
+  { label: "פורטל ההורדות ספרקי", href: "/downloads" },
+  { label: "ספרק קנדי", href: "/canada" },
+  { label: "צרו קשר", href: "/contact" },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const { itemCount, openCart } = useCart();
 
   return (
     <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
-        {/* Logo (visually right in RTL = first child) */}
-        <Link to="/" className="flex items-center gap-2 shrink-0">
-          <img src={sparkLogo} alt="Spark Toys" className="h-9 sm:h-10 w-auto" />
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2 shrink-0">
+          <Image src={sparkLogo} alt="Spark Toys" className="h-9 sm:h-10 w-auto" height={40} />
         </Link>
 
         {/* Desktop nav */}
@@ -73,7 +78,7 @@ export function Header() {
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
-                        to={child.to}
+                        href={child.href}
                         className="block px-4 py-2.5 rounded-xl text-[14px] font-medium text-navy hover:bg-cream hover:text-coral transition-colors"
                       >
                         {child.label}
@@ -85,7 +90,7 @@ export function Header() {
             ) : (
               <Link
                 key={item.label}
-                to={item.to}
+                href={item.href}
                 className="relative hover:text-navy transition-colors after:absolute after:right-0 after:left-0 after:-bottom-1.5 after:h-0.5 after:bg-coral after:rounded-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-right"
               >
                 {item.label}
@@ -110,12 +115,15 @@ export function Header() {
           </button>
           <button
             aria-label="עגלה"
+            onClick={openCart}
             className="relative h-10 w-10 flex items-center justify-center rounded-full hover:bg-muted text-navy transition-colors"
           >
             <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-0.5 -left-0.5 h-4.5 w-4.5 min-w-[18px] px-1 rounded-full bg-coral text-white text-[10px] font-bold flex items-center justify-center">
-              2
-            </span>
+            {itemCount > 0 && (
+              <span className="absolute -top-0.5 -left-0.5 h-4.5 w-4.5 min-w-[18px] px-1 rounded-full bg-coral text-white text-[10px] font-bold flex items-center justify-center">
+                {itemCount}
+              </span>
+            )}
           </button>
           <button
             aria-label="תפריט"
@@ -153,7 +161,7 @@ export function Header() {
                       {item.children.map((child) => (
                         <Link
                           key={child.label}
-                          to={child.to}
+                          href={child.href}
                           onClick={() => setOpen(false)}
                           className="px-3 py-2.5 rounded-lg text-sm font-medium text-navy/80 hover:bg-cream hover:text-coral"
                         >
@@ -166,7 +174,7 @@ export function Header() {
               ) : (
                 <Link
                   key={item.label}
-                  to={item.to}
+                  href={item.href}
                   onClick={() => setOpen(false)}
                   className="px-3 py-3 rounded-xl text-base font-medium text-navy hover:bg-cream"
                 >

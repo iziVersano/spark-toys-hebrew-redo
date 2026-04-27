@@ -1,4 +1,5 @@
 import { ArrowLeft, Play } from "lucide-react";
+import Image from "next/image";
 import heroChild from "@/assets/hero-child.jpg";
 
 export function Hero() {
@@ -44,16 +45,15 @@ export function Hero() {
 
             {/* IMAGE PANEL — left side in RTL */}
             <div className="relative order-1 lg:order-2 min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden bg-cream">
-              <img
+              <Image
                 src={heroChild}
                 alt="ילד משחק עם צעצוע למידה אינטראקטיבי של Spark Toys"
-                width={1200}
-                height={1200}
-                loading="eager"
-                className="absolute inset-0 h-full w-full object-cover object-center"
+                fill
+                priority
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
 
-              {/* Soft seam blend toward the text panel */}
               <div
                 aria-hidden
                 className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent pointer-events-none hidden lg:block"
@@ -63,7 +63,6 @@ export function Hero() {
                 className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cream to-transparent pointer-events-none lg:hidden"
               />
 
-              {/* Floating music notes */}
               <div aria-hidden className="absolute top-[22%] right-[6%] text-sky text-3xl sm:text-4xl rotate-[-10deg] drop-shadow-sm select-none">♪</div>
               <div aria-hidden className="absolute top-[34%] right-[16%] text-mint text-2xl sm:text-3xl rotate-[15deg] drop-shadow-sm select-none">♫</div>
               <div aria-hidden className="absolute top-[44%] right-[8%] text-sun text-3xl sm:text-4xl rotate-[-8deg] drop-shadow-sm select-none">♪</div>
