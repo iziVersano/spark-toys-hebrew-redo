@@ -76,6 +76,34 @@ remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wra
 remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
 /* ──────────────────────────────────────────────
+   Remove old Bridge / parent theme footer hooks
+────────────────────────────────────────────── */
+add_action('init', function () {
+    remove_all_actions('bridge_qode_footer_top_area');
+    remove_all_actions('bridge_qode_footer_bottom_area');
+    remove_all_actions('qode_footer_top_area');
+    remove_all_actions('qode_footer_bottom_area');
+}, 1);
+
+/* Unregister all sidebars the old Bridge theme registered */
+add_action('widgets_init', function () {
+    $old_sidebars = [
+        'footer_column_one',
+        'footer_column_two',
+        'footer_column_three',
+        'footer_column_four',
+        'sidebar',
+        'header_bottom_left_widget_area',
+        'header_bottom_right_widget_area',
+        'top_bar_left_widget_area',
+        'top_bar_right_widget_area',
+    ];
+    foreach ($old_sidebars as $id) {
+        unregister_sidebar($id);
+    }
+}, 99);
+
+/* ──────────────────────────────────────────────
    Contact form submission (AJAX)
 ────────────────────────────────────────────── */
 function spark_contact_submit() {

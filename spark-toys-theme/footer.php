@@ -129,6 +129,15 @@
   </div>
 </footer>
 
-<?php wp_footer(); ?>
+<?php
+/* Suppress any remaining old-theme sidebar/widget output */
+if ( function_exists('dynamic_sidebar') ) {
+    global $wp_registered_sidebars;
+    foreach ( array_keys( $wp_registered_sidebars ) as $sid ) {
+        remove_all_actions( 'dynamic_sidebar_' . $sid );
+    }
+}
+wp_footer();
+?>
 </body>
 </html>
