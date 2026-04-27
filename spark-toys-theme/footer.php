@@ -1,3 +1,13 @@
+<?php
+// FIX 4 — Block all Bridge/Qode plugin output before footer renders
+remove_all_actions('qode_after_page_content');
+remove_all_actions('bridge_after_page_content');
+remove_all_actions('bridge_qode_footer_top_area');
+remove_all_actions('bridge_qode_footer_bottom_area');
+remove_all_actions('qode_footer_top_area');
+remove_all_actions('qode_footer_bottom_area');
+remove_all_actions('bridge_before_closing_body_tag');
+?>
 <footer class="relative overflow-hidden bg-cream/50 border-t border-border/60">
   <!-- Decorative blobs -->
   <div class="blob bg-coral/25 h-72 w-72 -top-20 -right-20"></div>

@@ -72,6 +72,24 @@
   @media (min-width: 1280px) { ul.products { grid-template-columns: repeat(4, 1fr); } }
 }
 
+/* FIX 6 — Hide any old Bridge theme footer remnants that survive */
+#qodef-page-footer,
+.qodef-footer-top-area,
+.qodef-footer-bottom-area,
+#footer .qodef-footer-inner,
+.qodef-widget-holder,
+#colophon,
+.footer-widget-area,
+[class*="qodef-"],
+[id*="qodef-"] {
+  display: none !important;
+}
+
+/* But keep our own footer visible */
+footer.relative {
+  display: block !important;
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .font-display { font-family: 'Heebo', 'Assistant', system-ui, sans-serif; }

@@ -76,16 +76,32 @@ remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wra
 remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
 /* ──────────────────────────────────────────────
-   Remove old Bridge / parent theme footer hooks
+   FIX 1 — Suppress front page post content
+────────────────────────────────────────────── */
+add_filter('the_content', function ($content) {
+    if (is_front_page()) {
+        return '';
+    }
+    return $content;
+}, 99);
+
+/* ──────────────────────────────────────────────
+   FIX 2 — Remove all Bridge/Qode plugin hooks
 ────────────────────────────────────────────── */
 add_action('init', function () {
     remove_all_actions('bridge_qode_footer_top_area');
     remove_all_actions('bridge_qode_footer_bottom_area');
     remove_all_actions('qode_footer_top_area');
     remove_all_actions('qode_footer_bottom_area');
+    remove_all_actions('qode_after_page_content');
+    remove_all_actions('qode_before_page_content');
+    remove_all_actions('bridge_after_page_content');
+    remove_all_actions('bridge_before_closing_body_tag');
 }, 1);
 
-/* Unregister all sidebars the old Bridge theme registered */
+/* ──────────────────────────────────────────────
+   FIX 3 — Unregister ALL old sidebars
+────────────────────────────────────────────── */
 add_action('widgets_init', function () {
     $old_sidebars = [
         'footer_column_one',
@@ -93,6 +109,10 @@ add_action('widgets_init', function () {
         'footer_column_three',
         'footer_column_four',
         'sidebar',
+        'header_widget_area',
+        'top_bar_widget_area',
+        'right_sidebar',
+        'left_sidebar',
         'header_bottom_left_widget_area',
         'header_bottom_right_widget_area',
         'top_bar_left_widget_area',
