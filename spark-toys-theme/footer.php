@@ -1,21 +1,4 @@
 <?php
-// DEBUG - show all hooked actions on wp_footer
-global $wp_filter;
-if (isset($wp_filter['wp_footer'])) {
-    echo '<!-- WP FOOTER HOOKS: ';
-    foreach ($wp_filter['wp_footer']->callbacks as $priority => $callbacks) {
-        foreach ($callbacks as $callback) {
-            if (is_array($callback['function'])) {
-                echo $priority . ': ' . get_class($callback['function'][0]) . '::' . $callback['function'][1] . ' | ';
-            } elseif (is_string($callback['function'])) {
-                echo $priority . ': ' . $callback['function'] . ' | ';
-            }
-        }
-    }
-    echo ' -->';
-}
-?>
-<?php
 // FIX 4 — Block all Bridge/Qode plugin output before footer renders
 remove_all_actions('qode_after_page_content');
 remove_all_actions('bridge_after_page_content');
@@ -164,7 +147,48 @@ if ( function_exists('dynamic_sidebar') ) {
         remove_all_actions( 'dynamic_sidebar_' . $sid );
     }
 }
+
+// Remove all Bridge/Qode hooks from wp_footer before it fires
+global $wp_filter;
+if ( isset( $wp_filter['wp_footer'] ) ) {
+    foreach ( $wp_filter['wp_footer']->callbacks as $priority => $callbacks ) {
+        if ( $priority <= 10 ) continue; // keep WP core hooks
+        foreach ( $callbacks as $tag => $callback ) {
+            $fn = $callback['function'];
+            // Remove any callback from a Bridge/Qode class or file
+            $is_bridge = false;
+            if ( is_array($fn) && is_object($fn[0]) ) {
+                $class = strtolower(get_class($fn[0]));
+                $is_bridge = strpos($class, 'qode') !== false || strpos($class, 'bridge') !== false;
+            } elseif ( is_string($fn) ) {
+                $is_bridge = strpos(strtolower($fn), 'qode') !== false || strpos(strtolower($fn), 'bridge') !== false;
+            }
+            if ( $is_bridge ) {
+                $wp_filter['wp_footer']->remove_filter('wp_footer', $fn, $priority);
+            }
+        }
+    }
+}
+
+// Capture wp_footer output and strip any wp-die error page HTML
+ob_start();
 wp_footer();
+$footer_out = ob_get_clean();
+// Drop everything from a wp-die error page onward
+$error_markers = ['id="error-page"', 'class="wp-die-message"', 'באתר זה אירעה שגיאה קריטית'];
+$clean = $footer_out;
+foreach ( $error_markers as $marker ) {
+    $pos = strpos($clean, $marker);
+    if ( $pos !== false ) {
+        // Walk back to find the opening <div or <!DOCTYPE or <html that starts the error page
+        $cut = strrpos($clean, '<', $pos - strlen($clean));
+        if ( $cut !== false ) {
+            $clean = substr($clean, 0, $cut);
+        }
+        break;
+    }
+}
+echo $clean;
 ?>
 </body>
 </html>
