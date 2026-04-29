@@ -2,14 +2,14 @@
 defined('ABSPATH') || exit;
 
 /* Fetch live data */
-$featured_products = wc_get_products([
+$featured_products = function_exists('wc_get_products') ? wc_get_products([
     'limit'    => 8,
     'status'   => 'publish',
     'orderby'  => 'date',
     'order'    => 'DESC',
     'featured' => true,
-]);
-if (empty($featured_products)) {
+]) : [];
+if (empty($featured_products) && function_exists('wc_get_products')) {
     $featured_products = wc_get_products(['limit' => 8, 'status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
 }
 
@@ -29,11 +29,23 @@ $bg_cycle  = ['bg-sky-soft', 'bg-mint-soft', 'bg-sun-soft', 'bg-lilac-soft', 'bg
 get_header();
 ?>
 
+<!-- ── BLOB BACKGROUND ── -->
+<div aria-hidden="true" class="spark-blobs" style="pointer-events:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;overflow:hidden;will-change:transform">
+  <div class="blob" style="background:#e8614a;width:70vw;height:70vw;top:-15vw;right:-10vw;opacity:0.35"></div>
+  <div class="blob" style="background:#4da8d4;width:60vw;height:60vw;top:15%;left:-10vw;opacity:0.35"></div>
+  <div class="blob" style="background:#f0c040;width:55vw;height:55vw;top:40%;right:5%;opacity:0.35"></div>
+  <div class="blob" style="background:#4dbf8a;width:65vw;height:65vw;top:60%;left:-8vw;opacity:0.35"></div>
+  <div class="blob" style="background:#9b7dd4;width:60vw;height:60vw;top:78%;right:-10vw;opacity:0.35"></div>
+  <div class="blob" style="background:#e8614a;width:50vw;height:50vw;bottom:5%;left:15%;opacity:0.3"></div>
+</div>
+
+<div class="relative z-10">
+
 <!-- ── HERO ── -->
 <section class="relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10">
     <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
-      <div class="grid lg:grid-cols-2 min-h-[520px] lg:min-h-[600px]">
+      <div class="grid lg:grid-cols-2 min-h-[620px] lg:min-h-[700px]">
 
         <!-- Text panel -->
         <div class="relative z-10 order-2 lg:order-1 bg-cream px-6 sm:px-10 lg:px-14 py-10 lg:py-16 flex flex-col justify-center text-right">
@@ -66,18 +78,15 @@ get_header();
           </div>
         </div>
 
-        <!-- Image panel -->
-        <div class="relative order-1 lg:order-2 min-h-[320px] sm:min-h-[420px] lg:min-h-full overflow-hidden bg-cream">
-          <img src="<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-child.jpg"
-               alt="ילד משחק עם צעצוע למידה אינטראקטיבי של Spark Toys"
-               loading="eager"
-               class="absolute inset-0 h-full w-full object-cover object-center">
+        <!-- Video panel -->
+        <div class="relative order-1 lg:order-2 overflow-hidden bg-cream" style="height:480px" id="hero-video-panel">
+          <video src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4"
+                 poster="<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-child.jpg"
+                 autoplay muted loop playsinline preload="auto"
+                 class="absolute inset-0 h-full w-full object-cover object-top" id="hero-video"></video>
           <div aria-hidden="true" class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent pointer-events-none hidden lg:block"></div>
+          <div aria-hidden="true" class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-cream to-transparent pointer-events-none"></div>
           <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cream to-transparent pointer-events-none lg:hidden"></div>
-          <div aria-hidden="true" class="absolute top-[22%] right-[6%] text-sky text-3xl sm:text-4xl select-none" style="transform:rotate(-10deg)">♪</div>
-          <div aria-hidden="true" class="absolute top-[34%] right-[16%] text-mint text-2xl sm:text-3xl select-none" style="transform:rotate(15deg)">♫</div>
-          <div aria-hidden="true" class="absolute top-[44%] right-[8%] text-sun text-3xl sm:text-4xl select-none" style="transform:rotate(-8deg)">♪</div>
-          <div aria-hidden="true" class="absolute top-[52%] right-[20%] text-coral text-2xl sm:text-3xl select-none" style="transform:rotate(12deg)">♫</div>
         </div>
       </div>
     </div>
@@ -108,7 +117,8 @@ get_header();
           foreach ($fallback_cats as $i => $fc) :
               $bg = $bg_cycle[$i % count($bg_cycle)];
       ?>
-      <a href="<?php echo esc_url(get_term_link($fc['slug'], 'product_cat') ?: '#'); ?>" class="group block text-center">
+      <?php $_link = get_term_link($fc['slug'], 'product_cat'); $_href = (is_wp_error($_link) || !$_link) ? '#' : $_link; ?>
+      <a href="<?php echo esc_url($_href); ?>" class="group block text-center">
         <div class="relative aspect-square rounded-3xl <?php echo esc_attr($bg); ?> overflow-hidden border border-border/40 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-card">
           <img src="<?php echo esc_url($tmpl_dir); ?>/assets/images/<?php echo esc_attr($fc['img']); ?>"
                alt="<?php echo esc_attr($fc['name']); ?>" loading="lazy"
@@ -129,7 +139,8 @@ get_header();
                   $img_src = $tmpl_dir . '/assets/images/' . ($fallback_imgs[$i % count($fallback_imgs)]);
               }
       ?>
-      <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="group block text-center">
+      <?php $_tl = get_term_link($cat); $_th = is_wp_error($_tl) ? '#' : $_tl; ?>
+      <a href="<?php echo esc_url($_th); ?>" class="group block text-center">
         <div class="relative aspect-square rounded-3xl <?php echo esc_attr($bg); ?> overflow-hidden border border-border/40 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-card">
           <img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($cat->name); ?>" loading="lazy"
                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
@@ -452,5 +463,7 @@ get_header();
     </form>
   </div>
 </section>
+
+</div><!-- /relative z-10 -->
 
 <?php get_footer(); ?>

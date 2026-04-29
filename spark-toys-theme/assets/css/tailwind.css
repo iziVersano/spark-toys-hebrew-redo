@@ -49,6 +49,28 @@
 }
 
 @layer components {
+  /* Hide blobs on mobile only */
+  .spark-blobs { display: none; }
+  @media (min-width: 768px) {
+    .spark-blobs { display: block; }
+  }
+
+  /* Hero video panel — explicit height on mobile/tablet, full height on desktop */
+  #hero-video-panel {
+    height: 480px;
+  }
+  #hero-video {
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  @media (min-width: 640px) {
+    #hero-video-panel { height: 560px; }
+  }
+  @media (min-width: 1024px) {
+    #hero-video-panel { height: auto !important; min-height: 100%; }
+    #hero-video { object-position: center top; }
+  }
+
   /* Pastel blob decoration */
   .blob {
     position: absolute;
