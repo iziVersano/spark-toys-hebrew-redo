@@ -90,6 +90,65 @@ get_header();
   </div>
 </section>
 
+<!-- ── HOT PRODUCTS OF THE MONTH ── -->
+<?php $hot_products = array_slice($featured_products, 0, 2); ?>
+<?php if (!empty($hot_products)) : ?>
+<section class="py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="flex flex-col items-center text-center mb-10">
+      <div class="inline-flex items-center gap-2 bg-coral-soft text-coral text-sm font-bold px-4 py-2 rounded-full mb-5">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2c0 5-5 8-5 13a5 5 0 0 0 10 0c0-5-5-8-5-13z"/></svg>
+        חמים החודש
+      </div>
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-balance text-navy leading-[1.05]">מוצרים חמים <span class="text-coral">של החודש</span></h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+      <?php foreach ($hot_products as $i => $product) :
+          $product_id = $product->get_id();
+          $img_id     = $product->get_image_id();
+          $img_src    = $img_id ? wp_get_attachment_image_url($img_id, 'medium') : '';
+          $bg         = $bg_cycle[$i % count($bg_cycle)];
+          $is_on_sale = $product->is_on_sale();
+      ?>
+      <article class="group relative bg-white rounded-3xl p-5 sm:p-6 border border-border/60 hover:border-coral/20 hover:shadow-card transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+        <?php if ($is_on_sale) : ?>
+        <span class="absolute top-3 right-3 z-10 text-[11px] font-bold px-2.5 py-1 rounded-full bg-coral text-white leading-none">מבצע</span>
+        <?php endif; ?>
+        <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="flex flex-col flex-1">
+          <div class="relative aspect-square rounded-2xl <?php echo esc_attr($bg); ?> flex items-center justify-center mb-4 overflow-hidden">
+            <?php if ($img_src) : ?>
+            <img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($product->get_name()); ?>" loading="eager"
+                 class="w-[75%] h-[75%] object-contain transition-transform duration-500 group-hover:scale-110 drop-shadow-md">
+            <?php else : ?>
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-navy/20"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            <?php endif; ?>
+          </div>
+          <h3 class="text-base sm:text-lg font-bold text-navy line-clamp-1"><?php echo esc_html($product->get_name()); ?></h3>
+          <p class="text-sm text-muted-foreground mt-1.5 line-clamp-2 leading-snug flex-1">
+            <?php echo esc_html(wp_strip_all_tags($product->get_short_description())); ?>
+          </p>
+        </a>
+        <div class="mt-4 flex items-center justify-between">
+          <div class="text-2xl font-extrabold text-navy">
+            <?php echo wp_kses_post($product->get_price_html()); ?>
+          </div>
+          <?php if ($product->is_purchasable() && $product->is_in_stock()) : ?>
+          <button
+            data-product-id="<?php echo esc_attr($product_id); ?>"
+            data-product-name="<?php echo esc_attr($product->get_name()); ?>"
+            aria-label="<?php echo esc_attr('הוסף לעגלה: ' . $product->get_name()); ?>"
+            class="add-to-cart-btn h-10 w-10 rounded-full bg-coral-soft text-coral flex items-center justify-center hover:bg-coral hover:text-white transition-all duration-200 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          </button>
+          <?php endif; ?>
+        </div>
+      </article>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <!-- ── CATEGORIES ── -->
 <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-cream/40">
   <div class="mx-auto max-w-7xl">
