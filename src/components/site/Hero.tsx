@@ -19,10 +19,10 @@ export function Hero() {
               </div>
 
               {/* Headline */}
-              <h1 className="font-display text-[2.6rem] sm:text-5xl lg:text-[4.25rem] xl:text-[4.75rem] font-extrabold leading-[1.05] text-navy text-balance">
+              <h1 className="font-display text-[2.6rem] sm:text-5xl lg:text-[4.25rem] xl:text-[4.75rem] font-extrabold leading-[1.05] text-coral text-balance">
                 יותר ממשחק,
                 <br />
-                <span className="text-coral relative">
+                <span className="text-navy relative">
                   עולם של למידה.
                   <svg aria-hidden viewBox="0 0 220 12" className="absolute -bottom-2 right-0 w-full" fill="none">
                     <path d="M4 8 Q55 2 110 8 Q165 14 216 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" opacity="0.4"/>
