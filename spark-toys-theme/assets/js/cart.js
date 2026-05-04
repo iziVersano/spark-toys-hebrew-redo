@@ -2,6 +2,8 @@
 (function () {
   'use strict';
 
+  if (typeof sparkCart === 'undefined') return;
+
   var CART_BASE = sparkCart.restUrl + '/cart';
   var wcNonce   = sparkCart.nonce;
   var isLoading = false;

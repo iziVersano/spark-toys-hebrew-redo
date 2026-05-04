@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <radialGradient id="gb" cx="45%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#5DCDEE"/>
+      <stop offset="100%" stop-color="#1F9FCF"/>
+    </radialGradient>
+    <radialGradient id="gp" cx="70%" cy="25%" r="65%">
+      <stop offset="0%" stop-color="#B07FE0"/>
+      <stop offset="100%" stop-color="#7A44C0"/>
+    </radialGradient>
+    <radialGradient id="gr" cx="75%" cy="55%" r="65%">
+      <stop offset="0%" stop-color="#F07040"/>
+      <stop offset="100%" stop-color="#CC2E10"/>
+    </radialGradient>
+    <radialGradient id="gy" cx="50%" cy="78%" r="65%">
+      <stop offset="0%" stop-color="#FFD030"/>
+      <stop offset="100%" stop-color="#F09000"/>
+    </radialGradient>
+    <radialGradient id="gg" cx="25%" cy="65%" r="65%">
+      <stop offset="0%" stop-color="#90CC40"/>
+      <stop offset="100%" stop-color="#50A010"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Blue petal - top, sweeping right -->
+  <path d="M100,100
+    C 95,80 85,55 90,35
+    C 93,20 103,15 112,22
+    C 125,32 118,65 100,100 Z"
+    fill="url(#gb)" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Purple petal - top right, sweeping down-right -->
+  <path d="M100,100
+    C 120,95 145,90 158,100
+    C 168,108 165,120 155,124
+    C 140,130 115,112 100,100 Z"
+    fill="url(#gp)" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Red petal - right, sweeping down -->
+  <path d="M100,100
+    C 108,120 112,148 103,160
+    C 96,170 84,168 78,158
+    C 70,144 84,118 100,100 Z"
+    fill="url(#gr)" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Yellow petal - bottom, sweeping left -->
+  <path d="M100,100
+    C 80,106 55,112 43,103
+    C 33,95 35,83 45,78
+    C 58,70 84,86 100,100 Z"
+    fill="url(#gy)" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+
+  <!-- Green petal - left, sweeping up -->
+  <path d="M100,100
+    C 82,82 65,60 68,45
+    C 71,32 82,28 91,34
+    C 104,43 104,76 100,100 Z"
+    fill="url(#gg)" stroke="white" stroke-width="3.5" stroke-linejoin="round"/>
+</svg>

@@ -23,7 +23,7 @@ add_action('after_setup_theme', 'spark_setup');
    Enqueue assets
 ────────────────────────────────────────────── */
 function spark_enqueue() {
-    $v = '1.0.3';
+    $v = '1.0.9';
     $dir = get_template_directory_uri();
 
     wp_enqueue_style('spark-main', $dir . '/assets/css/main.css', [], $v);

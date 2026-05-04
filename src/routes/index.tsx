@@ -7,6 +7,7 @@ import { Stars } from "@/components/site/Stars";
 import { Products } from "@/components/site/Products";
 import { WhyUs } from "@/components/site/WhyUs";
 import { AboutBanner } from "@/components/site/AboutBanner";
+import { HotProducts } from "@/components/site/HotProducts";
 import { Retailers } from "@/components/site/Retailers";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
@@ -34,21 +35,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="relative min-h-screen">
-      {/* Soft pastel blob field — fixed behind all content for a continuous, airy backdrop */}
-      <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden hidden md:block">
-        <div className="blob bg-coral/60 h-[32rem] w-[32rem] -top-32 -right-24" style={{ opacity: 0.7 }} />
-        <div className="blob bg-sky/55 h-[28rem] w-[28rem] top-[15%] -left-32" style={{ opacity: 0.7 }} />
-        <div className="blob bg-sun/55 h-[26rem] w-[26rem] top-[40%] right-[8%]" style={{ opacity: 0.7 }} />
-        <div className="blob bg-mint/55 h-[30rem] w-[30rem] top-[60%] -left-20" style={{ opacity: 0.7 }} />
-        <div className="blob bg-lilac/55 h-[28rem] w-[28rem] top-[78%] -right-24" style={{ opacity: 0.7 }} />
-        <div className="blob bg-coral/50 h-[24rem] w-[24rem] bottom-[5%] left-[15%]" style={{ opacity: 0.7 }} />
-      </div>
-
-      <div className="relative z-10">
+    <div className="min-h-screen">
+      <div>
         <Header />
         <main>
           <Hero />
+          <HotProducts />
           <Categories />
           <Stars />
           <Benefits />

@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html { direction: rtl; }
+
+  body {
+    font-family: 'Rubik', system-ui, sans-serif;
+    direction: rtl;
+    text-align: right;
+    background-color: #fefdfb;
+    color: #1e2a4a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik', system-ui, sans-serif;
+  }
+
+  /* WooCommerce price resets */
+  .woocommerce-Price-amount { color: inherit; }
+  .woocommerce-Price-currencySymbol { font-size: inherit; }
+  del .woocommerce-Price-amount { color: #8b7e72; text-decoration: line-through; }
+  ins .woocommerce-Price-amount { color: #e8614a; text-decoration: none; }
+  ins { text-decoration: none; }
+
+  /* Pagination */
+  .woocommerce-pagination ul { list-style: none; display: flex; gap: 0.5rem; justify-content: center; margin-top: 3rem; padding: 0; }
+  .woocommerce-pagination ul li a,
+  .woocommerce-pagination ul li span {
+    display: flex; align-items: center; justify-content: center;
+    height: 2.75rem; min-width: 2.75rem; padding: 0 0.75rem;
+    border-radius: 9999px;
+    font-weight: 600; font-size: 0.875rem;
+    border: 1px solid #e8e3da;
+    color: #1e2a4a;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .woocommerce-pagination ul li a:hover { background: #1e2a4a; color: #fff; border-color: #1e2a4a; }
+  .woocommerce-pagination ul li span.current { background: #1e2a4a; color: #fff; border-color: #1e2a4a; }
+
+  /* Scrollbar */
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@layer components {
+  /* Hero video panel — explicit height on mobile/tablet, full height on desktop */
+  #hero-video-panel {
+    height: 480px;
+  }
+  #hero-video {
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  @media (min-width: 640px) {
+    #hero-video-panel { height: 560px; }
+  }
+  @media (min-width: 1024px) {
+    #hero-video-panel { height: auto !important; min-height: 100%; }
+    #hero-video { object-position: center top; }
+  }
+
+
+  /* Animate pulse dot */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+  /* WooCommerce product grid override — use our grid */
+  ul.products { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; list-style: none; padding: 0; margin: 0; }
+  @media (min-width: 768px)  { ul.products { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1280px) { ul.products { grid-template-columns: repeat(4, 1fr); } }
+}
+
+/* FIX 6 — Hide any old Bridge theme footer remnants that survive */
+#qodef-page-footer,
+.qodef-footer-top-area,
+.qodef-footer-bottom-area,
+#footer .qodef-footer-inner,
+.qodef-widget-holder,
+#colophon,
+.footer-widget-area,
+[class*="qodef-"],
+[id*="qodef-"] {
+  display: none !important;
+}
+
+/* But keep our own footer visible */
+footer.relative {
+  display: block !important;
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .font-display { font-family: 'Heebo', 'Assistant', system-ui, sans-serif; }
+  .drop-shadow-sm { filter: drop-shadow(0 1px 1px rgb(0 0 0 / 0.05)); }
+  .drop-shadow-md { filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06)); }
+  .drop-shadow-xl { filter: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03)) drop-shadow(0 8px 5px rgb(0 0 0 / 0.08)); }
+}

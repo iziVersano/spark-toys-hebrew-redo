@@ -5,11 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@500;700;800;900&family=Assistant:wght@400;500;600;700&subset=hebrew,latin&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&subset=hebrew,latin&display=swap" rel="stylesheet">
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
+<!-- ── PAGE LOADER ── -->
+<div id="spark-loader" aria-hidden="true">
+  <div class="loader-spinner"></div>
+</div>
 
 <!-- ── CART DRAWER ── -->
 <div id="cart-drawer" class="fixed inset-0 z-[200] pointer-events-none" aria-hidden="true">
@@ -50,7 +55,7 @@
         <span>סה"כ לתשלום</span>
         <span id="cart-total" class="text-xl font-extrabold text-coral">₪0</span>
       </div>
-      <a id="cart-checkout-btn" href="<?php echo esc_url(wc_get_checkout_url()); ?>"
+      <a id="cart-checkout-btn" href="<?php echo esc_url(function_exists('wc_get_checkout_url') ? wc_get_checkout_url() : home_url('/checkout/')); ?>"
          class="flex items-center justify-center gap-2 w-full h-13 rounded-full bg-navy text-white font-bold text-base hover:shadow-pop transition-all hover:-translate-y-0.5 py-3.5">
         לתשלום
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>

@@ -1,0 +1,51 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(open\\('/tmp/wc-cats.json'\\)\\); print\\(json.dumps\\(data[:3], indent=2, ensure_ascii=False\\)\\)\")",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(open\\('/tmp/wc-cats.json'\\)\\); [print\\(json.dumps\\({'id':c['id'],'name':c['name'],'slug':c['slug'],'count':c['count'],'has_image': bool\\(c.get\\('image'\\)\\)}, ensure_ascii=False\\)\\) for c in data]\")",
+      "Bash(python3 -c ' *)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo remote -v)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo log --oneline -5)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo fetch origin)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo diff --stat HEAD origin/main)",
+      "Bash(git -C /home/dci-student/work/spark-toys-hebrew-redo show origin/main:package.json)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git push *)",
+      "Bash(cp '/home/dci-student/work/spark-toys-hebrew-redo/src/assets/star-*.jpg' /home/dci-student/work/spark-toys-hebrew-redo/spark-toys-theme/assets/images/)",
+      "Bash(cp '/home/dci-student/work/spark-toys-hebrew-redo/src/assets/category-*.jpg' /home/dci-student/work/spark-toys-hebrew-redo/spark-toys-theme/assets/images/)",
+      "Bash(npx tailwindcss *)",
+      "Read(//home/dci-student/work/**)",
+      "Bash(zip -r spark-toys-theme.zip spark-toys-hebrew-redo/spark-toys-theme/ --exclude \"*/node_modules/*\")",
+      "Bash(rm spark-toys-theme.zip)",
+      "Bash(zip -r spark-toys-theme.zip spark-toys-hebrew-redo/spark-toys-theme/ -x \"*/node_modules/*\" -x \"spark-toys-hebrew-redo/spark-toys-theme/node_modules/*\")",
+      "Bash(unzip -l /home/dci-student/work/spark-toys-theme.zip)",
+      "Bash(zip -r ../spark-toys-theme.zip spark-toys-theme/ -x \"*/node_modules/*\")",
+      "Bash(unzip -l ../spark-toys-theme.zip)",
+      "Bash(wp --info)",
+      "Bash(chmod +x wp-cli.phar)",
+      "Bash(sudo mv *)",
+      "Bash(mkdir -p ~/bin)",
+      "Bash(mv wp-cli.phar ~/bin/wp)",
+      "Bash(~/bin/wp --info)",
+      "Bash(whois spark-toys.com)",
+      "Bash(dig spark-toys.com A +short)",
+      "Bash(dig spark-toys.com MX +short)",
+      "Bash(unzip -p ../spark-toys-theme.zip spark-toys-theme/footer.php)",
+      "Bash(unzip -p ../spark-toys-theme.zip spark-toys-theme/functions.php)",
+      "Bash(grep '$v =')",
+      "Bash(zip -r ../spark-toys-theme-v104.zip spark-toys-theme/ -x \"*/node_modules/*\")",
+      "Bash(unzip -p ../spark-toys-theme-v104.zip spark-toys-theme/style.css)",
+      "Bash(unzip -p ../spark-toys-theme-v104.zip spark-toys-theme/footer.php)",
+      "Read(//home/dci-student/Dokumente/sparki/**)",
+      "Bash(sudo dpkg *)"
+    ],
+    "additionalDirectories": [
+      "/home/dci-student/work"
+    ]
+  }
+}

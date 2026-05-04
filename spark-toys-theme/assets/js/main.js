@@ -115,5 +115,69 @@
       });
     }
 
+    /* ── Hero video carousel ── */
+    var slides = document.querySelectorAll('.hero-slide');
+    var dots   = document.querySelectorAll('.hero-dot');
+    var current = 0;
+
+    function tryPlay(video) {
+      var p = video.play();
+      if (p && typeof p.catch === 'function') p.catch(function () {});
+    }
+
+    function goToSlide(index) {
+      slides[current].classList.remove('active-slide');
+      slides[current].pause();
+      dots[current].classList.remove('bg-coral');
+      dots[current].classList.add('bg-white/60');
+
+      current = index;
+      slides[current].classList.add('active-slide');
+      tryPlay(slides[current]);
+      dots[current].classList.add('bg-coral');
+      dots[current].classList.remove('bg-white/60');
+    }
+
+    if (slides.length > 1) {
+      tryPlay(slides[0]);
+      setInterval(function () {
+        goToSlide((current + 1) % slides.length);
+      }, 8000);
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          goToSlide(parseInt(dot.getAttribute('data-index')));
+        });
+      });
+    } else if (slides.length === 1) {
+      tryPlay(slides[0]);
+    }
+
+    /* ── Page loader ── */
+    var loader = document.getElementById('spark-loader');
+    if (loader) {
+      // Show loader on any internal link click
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest('a');
+        if (!link) return;
+        var href = link.getAttribute('href');
+        if (href === '#' || href === null || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+        if (link.target === '_blank') return;
+        loader.classList.add('loader-visible');
+      });
+      // Hide loader once new page has loaded (back/forward or slow navigations)
+      window.addEventListener('pageshow', function () {
+        loader.classList.remove('loader-visible');
+      });
+    }
+
+    /* ── Local test: press L key to preview loader ── */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'l' || e.key === 'L') {
+        var l = document.getElementById('spark-loader');
+        if (!l) return;
+        l.classList.toggle('loader-visible');
+      }
+    });
+
   });
 })();
