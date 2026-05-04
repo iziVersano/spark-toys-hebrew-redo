@@ -1,10 +1,12 @@
 import { Flame, ShoppingCart } from "lucide-react";
 import productClock from "@/assets/product-clock.png";
 import productGuitar from "@/assets/product-guitar.png";
+import productCube from "@/assets/product-cube.png";
 
 const hotProducts = [
   { name: "השעון הראשון שלי", price: 139, img: productClock, bg: "bg-sky-soft" },
   { name: "הגיטרה הראשונה שלי", price: 159, img: productGuitar, bg: "bg-mint-soft" },
+  { name: "קובייה קסומה", price: 119, img: productCube, bg: "bg-sun-soft" },
 ];
 
 export function HotProducts() {
@@ -24,7 +26,7 @@ export function HotProducts() {
         </div>
 
         {/* 2-column grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {hotProducts.map((p) => (
             <article
               key={p.name}
