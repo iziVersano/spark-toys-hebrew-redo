@@ -44,7 +44,7 @@ get_header();
             <span class="h-2 w-2 rounded-full bg-coral animate-pulse"></span>
             חדש בקטלוג — סדרת המוסיקה
           </div>
-          <h1 class="font-display text-[2.75rem] sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem] font-extrabold leading-[1.02] text-navy text-balance">
+          <h1 class="font-display text-[2.75rem] sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem] font-extrabold leading-[1.02] text-sky text-balance">
             יותר ממשחק,<br>
             <span class="text-coral">עולם של למידה.</span>
           </h1>
