@@ -77,7 +77,45 @@ get_header();
     </article>
     <?php endwhile; ?>
   </div>
-  <?php woocommerce_pagination(); ?>
+
+  <?php
+  global $wp_query;
+  $pages = $wp_query && $wp_query->max_num_pages ? (int) $wp_query->max_num_pages : 1;
+  if ($pages > 1) :
+      $current = max(1, get_query_var('paged'));
+      $links = paginate_links([
+          'base'      => str_replace(999999999, '%#%', esc_url(get_pagenum_link(999999999))),
+          'format'    => '?paged=%#%',
+          'current'   => $current,
+          'total'     => $pages,
+          'mid_size'  => 1,
+          'end_size'  => 1,
+          'prev_text' => '→',
+          'next_text' => '←',
+          'type'      => 'array',
+      ]);
+  ?>
+  <nav dir="rtl" class="mt-12 flex justify-center" aria-label="ניווט בעמודים">
+    <ul class="inline-flex flex-wrap items-center gap-2">
+      <?php
+      $base_cls = 'inline-flex items-center justify-center min-w-10 h-10 px-3 rounded-full text-sm font-bold transition-colors';
+      foreach ((array) $links as $link) :
+          $is_current = strpos($link, 'current') !== false;
+          $is_dots    = strpos($link, 'dots')    !== false;
+          if ($is_current) {
+              $cls = $base_cls . ' bg-coral text-white shadow-sm';
+          } elseif ($is_dots) {
+              $cls = $base_cls . ' text-muted-foreground cursor-default';
+          } else {
+              $cls = $base_cls . ' bg-white border border-border text-navy hover:bg-coral hover:text-white hover:border-coral';
+          }
+          $rewritten = preg_replace('/class=("|\')[^"\']*("|\')/', 'class="' . esc_attr($cls) . '"', $link, 1);
+          echo '<li>' . $rewritten . '</li>';
+      endforeach; ?>
+    </ul>
+  </nav>
+  <?php endif; ?>
+
   <?php endif; ?>
 
 </main>

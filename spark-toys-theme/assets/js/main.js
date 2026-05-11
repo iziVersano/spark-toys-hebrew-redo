@@ -179,5 +179,37 @@
       }
     });
 
+    /* ── Header dropdowns: portal to <body> + fixed positioning ── */
+    var menuItems = document.querySelectorAll('.spark-menu-item');
+    menuItems.forEach(function (item) {
+      var panel = item.querySelector('.spark-menu-panel');
+      if (!panel) return;
+      document.body.appendChild(panel);
+
+      function position() {
+        var rect = item.getBoundingClientRect();
+        panel.style.top = (rect.bottom + 8) + 'px';
+        panel.style.right = (window.innerWidth - rect.right) + 'px';
+        panel.style.left = 'auto';
+      }
+      function open() { position(); panel.classList.add('is-open'); }
+      function close() { panel.classList.remove('is-open'); }
+
+      item.addEventListener('mouseenter', open);
+      panel.addEventListener('mouseenter', open);
+      item.addEventListener('mouseleave', function () {
+        setTimeout(function () {
+          if (!panel.matches(':hover') && !item.matches(':hover')) close();
+        }, 80);
+      });
+      panel.addEventListener('mouseleave', function () {
+        setTimeout(function () {
+          if (!panel.matches(':hover') && !item.matches(':hover')) close();
+        }, 80);
+      });
+      window.addEventListener('resize', function () { if (panel.classList.contains('is-open')) position(); });
+      window.addEventListener('scroll', function () { if (panel.classList.contains('is-open')) position(); }, { passive: true });
+    });
+
   });
 })();

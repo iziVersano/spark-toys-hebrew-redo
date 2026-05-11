@@ -30,42 +30,38 @@ get_header();
 ?>
 
 
-<div class="relative z-10">
+<div>
 
-<!-- ── HERO ── -->
-<section class="relative">
+<!-- ── HERO (TEST: no videos) ── -->
+<section class="spark-hero relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10">
     <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
       <div class="grid lg:grid-cols-2 min-h-[620px] lg:min-h-[700px]">
 
         <!-- Text panel -->
-        <div class="relative z-10 order-2 lg:order-1 bg-cream px-6 sm:px-10 lg:px-14 py-10 lg:py-16 flex flex-col justify-center text-right">
-          <div class="inline-flex self-end items-center gap-2 rounded-full bg-white px-4 py-2 text-base font-semibold text-navy/80 shadow-soft mb-6 ring-1 ring-black/5">
-            <span class="h-2 w-2 rounded-full bg-coral animate-pulse"></span>
-            חדש בקטלוג — סדרת המוסיקה
+        <div class="spark-hero-text order-2 lg:order-1 px-6 sm:px-10 py-10 lg:py-16 relative text-right" style="background-color:#ffffff;background-image:linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),url('<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;">
+          <div>
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.05] text-black text-balance tracking-tight">
+              משחק חכם<br>
+              <span class="text-coral">מתחיל בסקרנות.</span>
+            </h1>
+            <p class="mt-8 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-md mr-0 ml-auto lg:ml-0 font-light">
+              צעצועים דוברי עברית שמפתחים חשיבה, דמיון ולמידה דרך משחק.
+            </p>
           </div>
-          <h1 class="font-display text-[2.75rem] sm:text-6xl lg:text-[4.75rem] xl:text-[5.25rem] font-extrabold leading-[1.02] text-sky text-balance">
-            יותר ממשחק,<br>
-            <span class="text-coral">עולם של למידה.</span>
-          </h1>
-          <p class="mt-6 text-lg sm:text-xl text-navy/75 leading-relaxed max-w-md mr-0 ml-auto lg:ml-0">
-            Spark Toys יוצרים צעצועים אינטראקטיביים וחינוכיים שעוזרים לילדים להתפתח דרך מוסיקה, צלילים ומשחק.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:justify-end">
+          <div class="flex flex-col gap-4 absolute" style="bottom:2.5rem;left:2.5rem;right:2.5rem">
             <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-               class="group inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-navy text-white font-bold text-base shadow-card hover:shadow-pop transition-all hover:-translate-y-0.5">
+               class="group inline-flex items-center justify-center gap-3 h-[58px] rounded-2xl font-extrabold text-lg text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-pop whitespace-nowrap"
+               style="background:linear-gradient(135deg,#e8614a 0%,#d94f38 100%);box-shadow:0 6px 24px -4px rgba(232,97,74,.55);width:100%">
               גלו את המוצרים
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform duration-200"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
             </a>
             <a href="#benefits"
-               class="inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-white text-navy font-bold text-base border border-border hover:border-navy/30 transition-all">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#e8614a" stroke="#e8614a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              לפי שלבי התפתחות
+               class="group inline-flex items-center justify-center gap-3 h-[58px] rounded-2xl font-extrabold text-lg transition-all duration-200 hover:-translate-y-1 whitespace-nowrap"
+               style="background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);border:2px solid rgba(232,97,74,0.35);color:#1e2a4a;box-shadow:0 4px 16px -4px rgba(30,42,74,.12);width:100%">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8614a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              לפי גיל והתפתחות
             </a>
-          </div>
-          <div class="mt-8 flex flex-wrap justify-end items-center gap-x-6 gap-y-2 text-base font-medium text-navy/70">
-            <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-mint"></span> תוכן בעברית מלאה</span>
-            <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky"></span> מותאם לגילאי 0–3+</span>
           </div>
         </div>
 
@@ -167,69 +163,67 @@ get_header();
       </h2>
       <p class="relative mt-5 text-lg sm:text-xl text-muted-foreground max-w-2xl">מגוון רחב של קטגוריות שיתאימו לכל ילד ולכל שלב התפתחותי.</p>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 lg:gap-5">
-      <?php
-      $accent_cycle  = ['from-coral/70','from-mint/70','from-sun/70','from-lilac/70','from-sky/70','from-coral/70'];
-      $fallback_imgs = ['category-development.jpg','category-robots.jpg','category-blox.jpg','category-wood.jpg','category-books.jpg','category-music.jpg'];
-      $cats_to_show  = !is_wp_error($categories) && $categories ? $categories : [];
-      if (empty($cats_to_show)) :
-          $fallback_cats = [
-              ['name' => 'צעצועי התפתחות', 'slug' => 'development-toys', 'img' => $fallback_imgs[0]],
-              ['name' => 'רובוטים',         'slug' => 'robots',           'img' => $fallback_imgs[1]],
-              ['name' => 'Spark BloX',      'slug' => 'spark-blox',       'img' => $fallback_imgs[2]],
-              ['name' => 'צעצועי עץ',       'slug' => 'wooden-toys',      'img' => $fallback_imgs[3]],
-              ['name' => 'ספרים',           'slug' => 'interactive-books','img' => $fallback_imgs[4]],
-              ['name' => 'מוסיקה',          'slug' => 'music',            'img' => $fallback_imgs[5]],
-          ];
-          foreach ($fallback_cats as $i => $fc) :
-              $accent = $accent_cycle[$i % count($accent_cycle)];
-              $span   = ($i === 0) ? 'md:col-span-2' : '';
+    <?php
+    $accent_cycle  = ['from-coral/70','from-mint/70','from-sun/70','from-lilac/70','from-sky/70','from-sky/70'];
+    $fallback_imgs = ['cat-music.png','cat-robots.png','cat-blocks.png','cat-puppets.png','cat-books.png','cat-development.png'];
+    $cats_to_show  = !is_wp_error($categories) && $categories ? $categories : [];
+    if (empty($cats_to_show)) :
+        $cats_list = [
+            ['name' => 'צעצועי התפתחות',          'slug' => 'development-toys', 'img' => 'cat-development.png'],
+            ['name' => 'SPARK BLOX אבני הרכבה',   'slug' => 'spark-blox',       'img' => 'cat-blocks.png'],
+            ['name' => 'ספרים אינטראקטיביים',     'slug' => 'interactive-books','img' => 'cat-books.png'],
+            ['name' => 'רובוטים',                  'slug' => 'robots',           'img' => 'cat-robots.png'],
+            ['name' => 'צעצועי עץ',                'slug' => 'wooden-toys',      'img' => 'cat-puppets.png'],
+            ['name' => 'מוסיקה וכלי נגינה',       'slug' => 'music',            'img' => 'cat-music.png'],
+        ];
+    else :
+        $slug_map  = ['music' => 'cat-music.png','robots' => 'cat-robots.png','spark-blox' => 'cat-blocks.png','puppets' => 'cat-puppets.png','books' => 'cat-books.png','interactive-books' => 'cat-books.png','development-toys' => 'cat-development.png'];
+        $cats_list = [];
+        foreach ($cats_to_show as $i => $cat) :
+            $img_src = '';
+            if (!empty($cat->thumbnail_id)) $img_src = wp_get_attachment_url($cat->thumbnail_id);
+            if (!$img_src) { $fb = isset($slug_map[$cat->slug]) ? $slug_map[$cat->slug] : $fallback_imgs[$i % count($fallback_imgs)]; $img_src = $tmpl_dir . '/assets/images/' . $fb; }
+            $_tl = get_term_link($cat); $_href = is_wp_error($_tl) ? '#' : $_tl;
+            $cats_list[] = ['name' => $cat->name, 'href' => $_href, 'img_url' => $img_src, 'slug' => $cat->slug];
+        endforeach;
+    endif;
+    $total = count($cats_list);
+    ?>
+
+    <!-- Mosaic grid: sizes via .mosaic-grid CSS rules -->
+    <?php
+    // Per-card backgrounds extracted to match each photo's pastel base color
+    $card_bgs = [
+      'music'             => '#fde9d4', // warm cream
+      'robots'            => '#f9eccf', // soft yellow
+      'spark-blox'        => '#f3eee5', // beige
+      'puppets'           => '#fce5e3', // pink cream
+      'interactive-books' => '#fcefe0', // light tan
+      'development-toys'  => '#e9eef8', // pale blue
+    ];
+    ?>
+    <div class="mosaic-grid grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
+      <?php foreach ($cats_list as $i => $item) :
+        $href   = isset($item['href']) ? $item['href'] : (function_exists('get_term_link') ? (($l = get_term_link($item['slug'], 'product_cat')) && !is_wp_error($l) ? $l : '#') : '#');
+        $img    = isset($item['img_url']) ? $item['img_url'] : esc_url($tmpl_dir) . '/assets/images/' . $item['img'];
+        $slug   = isset($item['slug']) ? $item['slug'] : '';
+        $bg     = isset($card_bgs[$slug]) ? $card_bgs[$slug] : '#f5efe7';
+        $is_hero = ($i === 0);
       ?>
-      <?php $_link = get_term_link($fc['slug'], 'product_cat'); $_href = (is_wp_error($_link) || !$_link) ? '#' : $_link; ?>
-      <a href="<?php echo esc_url($_href); ?>" class="group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer <?php echo esc_attr($span); ?>">
-        <div class="relative w-full overflow-hidden <?php echo ($i === 0) ? 'aspect-[16/7] md:aspect-[16/8]' : 'aspect-square'; ?>">
-          <img src="<?php echo esc_url($tmpl_dir); ?>/assets/images/<?php echo esc_attr($fc['img']); ?>"
-               alt="<?php echo esc_attr($fc['name']); ?>" loading="lazy"
-               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t <?php echo esc_attr($accent); ?> via-navy/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
-            <h3 class="text-white font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight drop-shadow-sm"><?php echo esc_html($fc['name']); ?></h3>
-            <div class="flex items-center gap-1.5 mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-              <span class="text-white/90 text-sm font-semibold">לקטגוריה</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            </div>
+      <a href="<?php echo esc_url($href); ?>" class="group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer shadow-sm hover:shadow-lg transition-shadow duration-300" style="background:<?php echo esc_attr($bg); ?>">
+        <img src="<?php echo esc_url($img); ?>" alt="<?php echo esc_attr($item['name']); ?>" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105">
+        <!-- Bottom-only gradient for legible title, no top tint -->
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy/75 via-navy/30 to-transparent pointer-events-none"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-5 lg:p-6">
+          <h3 class="text-white font-extrabold leading-tight drop-shadow-md <?php echo $is_hero ? 'text-2xl sm:text-3xl lg:text-4xl' : 'text-base sm:text-lg lg:text-xl'; ?>"><?php echo esc_html($item['name']); ?></h3>
+          <div class="flex items-center gap-1.5 mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+            <span class="text-white/90 text-sm font-semibold">לקטגוריה</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
           </div>
         </div>
       </a>
-      <?php endforeach;
-      else :
-          foreach ($cats_to_show as $i => $cat) :
-              $accent  = $accent_cycle[$i % count($accent_cycle)];
-              $span    = ($i === 0) ? 'md:col-span-2' : '';
-              $img_src = '';
-              if (!empty($cat->thumbnail_id)) {
-                  $img_src = wp_get_attachment_url($cat->thumbnail_id);
-              }
-              if (!$img_src) {
-                  $img_src = $tmpl_dir . '/assets/images/' . ($fallback_imgs[$i % count($fallback_imgs)]);
-              }
-      ?>
-      <?php $_tl = get_term_link($cat); $_th = is_wp_error($_tl) ? '#' : $_tl; ?>
-      <a href="<?php echo esc_url($_th); ?>" class="group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer <?php echo esc_attr($span); ?>">
-        <div class="relative w-full overflow-hidden <?php echo ($i === 0) ? 'aspect-[16/7] md:aspect-[16/8]' : 'aspect-square'; ?>">
-          <img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($cat->name); ?>" loading="lazy"
-               class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t <?php echo esc_attr($accent); ?> via-navy/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-          <div class="absolute inset-0 flex flex-col justify-end p-4 sm:p-6">
-            <h3 class="text-white font-extrabold text-lg sm:text-xl lg:text-2xl leading-tight drop-shadow-sm"><?php echo esc_html($cat->name); ?></h3>
-            <div class="flex items-center gap-1.5 mt-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-              <span class="text-white/90 text-sm font-semibold">לקטגוריה</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            </div>
-          </div>
-        </div>
-      </a>
-      <?php endforeach; endif; ?>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -237,7 +231,7 @@ get_header();
 <!-- ── STARS ── -->
 <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
-    <div class="flex flex-col items-center text-center mb-12 lg:mb-16">
+    <div class="flex flex-col items-center text-center mb-10">
       <div class="inline-flex items-center gap-2 bg-sun-soft text-sun text-sm font-bold px-4 py-2 rounded-full mb-5">
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
         כוכבי הילדים
@@ -245,55 +239,19 @@ get_header();
       <h2 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-balance text-navy leading-[1.05]">הדמויות <span class="text-coral">האהובות</span> בעברית</h2>
       <p class="mt-5 text-lg sm:text-xl text-muted-foreground max-w-2xl">הכירו את הכוכבים שמלווים את הילדים בכל משחק, שיר וסיפור.</p>
     </div>
-    <?php
-    $stars = [
-        ['name' => 'יובל המבולבל',  'img' => 'star-yuval.png',    'ring' => 'ring-coral/40', 'bg' => 'bg-coral-soft', 'style' => 'background:#fef9e7'],
-        ['name' => 'מיכל הקטנה',    'img' => 'star-michal.jpg',   'ring' => 'ring-sun/50',   'bg' => 'bg-sun-soft'],
-        ['name' => 'מיקי',           'img' => 'star-miki.png',     'ring' => 'ring-mint/50',  'bg' => 'bg-mint-soft', 'label_img' => 'miki-logo.png'],
-        ['name' => 'הכבשה שושנה',   'img' => 'star-shoshana.png', 'ring' => 'ring-coral/40', 'bg' => 'bg-coral-soft', 'style' => 'background:#f9b8c4'],
-        ['name' => 'קופיקו',         'img' => 'star-kofiko.jpg',   'ring' => 'ring-lilac/50', 'bg' => 'bg-lilac-soft'],
-        ['name' => 'לולי',           'img' => 'star-luli.jpg',     'ring' => 'ring-sky/50',   'bg' => 'bg-sky-soft'],
-        ['name' => 'הדוד חיים',      'img' => 'star-haim.jpg',     'ring' => 'ring-sky/50',   'bg' => 'bg-sky-soft'],
-    ];
-    ?>
-    <!-- Mobile: horizontal scroll -->
-    <div class="md:hidden -mx-4 px-4 overflow-x-auto">
-      <div class="flex gap-5 pb-2 min-w-max" dir="rtl">
-        <?php foreach ($stars as $star) : ?>
-        <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-           class="group flex flex-col items-center text-center w-28 sm:w-32 shrink-0">
-          <div class="relative aspect-square w-28 sm:w-32 rounded-full overflow-hidden <?php echo esc_attr($star['bg']); ?> ring-4 <?php echo esc_attr($star['ring']); ?> ring-offset-4 ring-offset-background transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-card" <?php if (!empty($star['style'])) echo 'style="' . esc_attr($star['style']) . '"'; ?>>
-            <img src="<?php echo esc_url($tmpl_dir . '/assets/images/' . $star['img']); ?>"
-                 alt="<?php echo esc_attr($star['name']); ?>" loading="lazy"
-                 class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
-          </div>
-          <?php if (!empty($star['label_img'])) : ?>
-          <img src="<?php echo esc_url($tmpl_dir . '/assets/images/' . $star['label_img']); ?>" alt="<?php echo esc_attr($star['name']); ?>" class="mt-3 h-14 w-auto object-contain">
-          <?php else : ?>
-          <h3 class="mt-4 text-lg font-extrabold text-navy group-hover:text-coral transition-colors"><?php echo esc_html($star['name']); ?></h3>
-          <?php endif; ?>
-        </a>
-        <?php endforeach; ?>
-      </div>
-    </div>
-    <!-- Desktop: grid -->
-    <div class="hidden md:grid grid-cols-4 lg:grid-cols-7 gap-6 lg:gap-8">
-      <?php foreach ($stars as $star) : ?>
-      <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-         class="group flex flex-col items-center text-center">
-        <div class="relative aspect-square w-full rounded-full overflow-hidden <?php echo esc_attr($star['bg']); ?> ring-4 <?php echo esc_attr($star['ring']); ?> ring-offset-4 ring-offset-background transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-card" <?php if (!empty($star['style'])) echo 'style="' . esc_attr($star['style']) . '"'; ?>>
-          <img src="<?php echo esc_url($tmpl_dir . '/assets/images/' . $star['img']); ?>"
-               alt="<?php echo esc_attr($star['name']); ?>" loading="lazy"
-               class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+    <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
+       class="group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer shadow-sm hover:shadow-lg transition-shadow duration-300 block" style="background:#fef9e7">
+      <img src="<?php echo esc_url($tmpl_dir); ?>/assets/images/stars3.png"
+           alt="כוכבי הילדים" loading="lazy"
+           class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105">
+      <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy/75 via-navy/30 to-transparent pointer-events-none"></div>
+      <div class="absolute inset-x-0 bottom-0 flex flex-col justify-end p-4 sm:p-5 lg:p-6">
+        <div class="flex items-center gap-1.5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+          <span class="text-white/90 text-sm font-semibold">לכל הכוכבים</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.9"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         </div>
-        <?php if (!empty($star['label_img'])) : ?>
-        <img src="<?php echo esc_url($tmpl_dir . '/assets/images/' . $star['label_img']); ?>" alt="<?php echo esc_attr($star['name']); ?>" class="mt-3 h-14 w-auto object-contain">
-        <?php else : ?>
-        <h3 class="mt-4 text-lg sm:text-xl font-extrabold text-navy group-hover:text-coral transition-colors"><?php echo esc_html($star['name']); ?></h3>
-        <?php endif; ?>
-      </a>
-      <?php endforeach; ?>
-    </div>
+      </div>
+    </a>
   </div>
 </section>
 

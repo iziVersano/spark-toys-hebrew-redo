@@ -67,7 +67,7 @@
 </div>
 <!-- ── /CART DRAWER ── -->
 
-<header class="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
+<header class="site-header sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
 
     <!-- Logo -->
@@ -81,46 +81,36 @@
       <a href="<?php echo esc_url(home_url('/')); ?>" class="relative hover:text-navy transition-colors after:absolute after:right-0 after:left-0 after:-bottom-1.5 after:h-0.5 after:bg-coral after:rounded-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-right">בית</a>
 
       <!-- Products dropdown -->
-      <div class="relative group">
-        <button type="button" class="relative flex items-center gap-1 hover:text-navy transition-colors after:absolute after:right-0 after:left-0 after:-bottom-1.5 after:h-0.5 after:bg-coral after:rounded-full after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:origin-right">
+      <div class="spark-menu-item">
+        <button type="button" class="spark-menu-trigger">
           המוצרים שלנו
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spark-menu-chevron"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all absolute top-full right-0 pt-3 z-50">
-          <div class="min-w-[240px] bg-background rounded-2xl border border-border/60 shadow-xl p-2 text-right">
-            <?php
-            $product_cats = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC', 'number' => 20]);
-            if (!is_wp_error($product_cats) && $product_cats) :
-                foreach ($product_cats as $cat) :
-                    if (in_array($cat->slug, ['none', 'developmental-toys', 'learning-toys', 'uncategorized'])) continue;
-            ?>
-            <a href="<?php echo esc_url(get_term_link($cat)); ?>"
-               class="block px-4 py-2.5 rounded-xl text-[14px] font-medium text-navy hover:bg-cream hover:text-coral transition-colors">
-              <?php echo esc_html($cat->name); ?>
-            </a>
-            <?php endforeach; endif; ?>
-          </div>
+        <div class="spark-menu-panel">
+          <?php
+          $product_cats = get_terms(['taxonomy' => 'product_cat', 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC', 'number' => 20]);
+          if (!is_wp_error($product_cats) && $product_cats) :
+              foreach ($product_cats as $cat) :
+                  if (in_array($cat->slug, ['none', 'developmental-toys', 'learning-toys', 'uncategorized'])) continue;
+          ?>
+          <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="spark-menu-link"><?php echo esc_html($cat->name); ?></a>
+          <?php endforeach; endif; ?>
         </div>
       </div>
 
       <!-- Stars dropdown -->
-      <div class="relative group">
-        <button type="button" class="relative flex items-center gap-1 hover:text-navy transition-colors after:absolute after:right-0 after:left-0 after:-bottom-1.5 after:h-0.5 after:bg-coral after:rounded-full after:scale-x-0 group-hover:after:scale-x-100 after:transition-transform after:origin-right">
+      <div class="spark-menu-item">
+        <button type="button" class="spark-menu-trigger">
           כוכבי הילדים
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:rotate-180"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spark-menu-chevron"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 transition-all absolute top-full right-0 pt-3 z-50">
-          <div class="min-w-[240px] bg-background rounded-2xl border border-border/60 shadow-xl p-2 text-right">
-            <?php
-            $stars = ['יובל המבולבל','מיכל הקטנה','מיקי','הדוד חיים','קופיקו','לולי','הכבשה שושנה'];
-            foreach ($stars as $star) :
-            ?>
-            <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-               class="block px-4 py-2.5 rounded-xl text-[14px] font-medium text-navy hover:bg-cream hover:text-coral transition-colors">
-              <?php echo esc_html($star); ?>
-            </a>
-            <?php endforeach; ?>
-          </div>
+        <div class="spark-menu-panel">
+          <?php
+          $stars = ['יובל המבולבל','מיכל הקטנה','מיקי','הדוד חיים','קופיקו','לולי','הכבשה שושנה'];
+          foreach ($stars as $star) :
+          ?>
+          <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>" class="spark-menu-link"><?php echo esc_html($star); ?></a>
+          <?php endforeach; ?>
         </div>
       </div>
 
