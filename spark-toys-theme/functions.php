@@ -23,10 +23,11 @@ add_action('after_setup_theme', 'spark_setup');
    Enqueue assets
 ────────────────────────────────────────────── */
 function spark_enqueue() {
-    $v = '1.1.0';
+    $v = '1.4.0';
     $dir = get_template_directory_uri();
 
-    wp_enqueue_style('spark-main', $dir . '/assets/css/main.css', [], $v);
+    wp_enqueue_style('spark-fonts', 'https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800;900&display=swap', [], null);
+    wp_enqueue_style('spark-main', $dir . '/assets/css/main.css', ['spark-fonts'], $v);
     wp_enqueue_script('spark-cart', $dir . '/assets/js/cart.js', [], $v, true);
     wp_enqueue_script('spark-main', $dir . '/assets/js/main.js', ['spark-cart'], $v, true);
 

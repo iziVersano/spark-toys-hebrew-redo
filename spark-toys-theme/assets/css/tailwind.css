@@ -53,16 +53,22 @@
   #hero-video-panel {
     height: 560px;
   }
-  #hero-video {
+  #hero-video,
+  #hero-video-2 {
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 15%;
+    transform: translateY(-5%);
   }
   @media (min-width: 640px) {
     #hero-video-panel { height: 680px; }
   }
   @media (min-width: 1024px) {
     #hero-video-panel { height: 640px; }
-    #hero-video { object-position: center 20%; }
+    #hero-video,
+    #hero-video-2 {
+      object-position: center 10%;
+      transform: translateY(-8%);
+    }
   }
   @media (min-width: 1280px) {
     #hero-video-panel { height: 720px; }

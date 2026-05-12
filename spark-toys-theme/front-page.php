@@ -9,9 +9,6 @@ $featured_products = function_exists('wc_get_products') ? wc_get_products([
     'order'    => 'DESC',
     'featured' => true,
 ]) : [];
-if (empty($featured_products) && function_exists('wc_get_products')) {
-    $featured_products = wc_get_products(['limit' => 8, 'status' => 'publish', 'orderby' => 'date', 'order' => 'DESC']);
-}
 
 $categories = get_terms([
     'taxonomy'   => 'product_cat',
@@ -36,16 +33,16 @@ get_header();
 <section class="spark-hero relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10">
     <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
-      <div class="grid lg:grid-cols-2 min-h-[620px] lg:min-h-[700px]">
+      <div class="grid lg:grid-cols-2 min-h-[480px] lg:min-h-[500px]">
 
         <!-- Text panel -->
         <div class="spark-hero-text order-2 lg:order-1 px-6 sm:px-10 py-10 lg:py-16 relative text-right" style="background-color:#ffffff;background-image:linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),url('<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;">
-          <div>
-            <h1 class="font-display text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.05] text-black text-balance tracking-tight">
+          <div class="absolute inset-x-0 text-center" style="top:50%;transform:translateY(-60%);padding:0 2rem">
+            <h1 style="font-family:'Heebo',sans-serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:#111111;margin:0">
               משחק חכם<br>
-              <span class="text-coral">מתחיל בסקרנות.</span>
+              <span style="color:#e8614a;display:block">מתחיל בסקרנות.</span>
             </h1>
-            <p class="mt-8 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-md mr-0 ml-auto lg:ml-0 font-light">
+            <p style="margin-top:1.5rem;font-family:'Assistant',sans-serif;font-size:clamp(1rem,2vw,1.25rem);font-weight:600;color:#1e2a4a;line-height:1.6;letter-spacing:0.01em;display:inline-block;background:rgba(255,255,255,0.55);backdrop-filter:blur(6px);padding:0.5rem 1.25rem;border-radius:999px">
               צעצועים דוברי עברית שמפתחים חשיבה, דמיון ולמידה דרך משחק.
             </p>
           </div>
@@ -69,13 +66,20 @@ get_header();
         <div class="relative order-1 lg:order-2 overflow-hidden bg-cream" id="hero-video-panel">
           <!-- Video slides -->
           <div id="hero-carousel" class="absolute inset-0">
-            <video class="hero-slide absolute inset-0 h-full w-full object-cover object-top active-slide" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4" muted loop playsinline preload="auto"></video>
-            <video class="hero-slide absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/galgal.mp4" muted loop playsinline preload="none"></video>
+            <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4?v=2" muted playsinline preload="auto" autoplay></video>
+            <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/galgal.mp4?v=2" muted playsinline preload="auto" style="display:none"></video>
           </div>
-          <!-- Dot indicators -->
-          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="hero-dots">
-            <button class="hero-dot w-2.5 h-2.5 rounded-full bg-coral transition-all" data-index="0" aria-label="סרטון 1"></button>
-            <button class="hero-dot w-2.5 h-2.5 rounded-full bg-white/60 transition-all" data-index="1" aria-label="סרטון 2"></button>
+          <!-- Video controls -->
+          <div class="absolute top-4 left-4 flex gap-2 z-10" style="direction:ltr">
+            <button id="hero-mute-btn" aria-label="השתק/הפעל שמע"
+              style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+              <svg id="hero-icon-muted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+              <svg id="hero-icon-sound" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+            <button id="hero-fullscreen-btn" aria-label="מסך מלא"
+              style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
           </div>
           <div aria-hidden="true" class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent pointer-events-none hidden lg:block"></div>
           <div aria-hidden="true" class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-cream to-transparent pointer-events-none"></div>
@@ -177,12 +181,37 @@ get_header();
             ['name' => 'מוסיקה וכלי נגינה',       'slug' => 'music',            'img' => 'cat-music.png'],
         ];
     else :
-        $slug_map  = ['music' => 'cat-music.png','robots' => 'cat-robots.png','spark-blox' => 'cat-blocks.png','puppets' => 'cat-puppets.png','books' => 'cat-books.png','interactive-books' => 'cat-books.png','development-toys' => 'cat-development.png'];
+        $slug_map = [
+            'music'             => 'cat-music.png',
+            'robots'            => 'cat-robots.png',
+            'spark-blox'        => 'cat-blocks.png',
+            'puppets'           => 'cat-puppets.png',
+            'dolls'             => 'cat-puppets.png',
+            'books'             => 'cat-books.png',
+            'interactive-books' => 'cat-books.png',
+            'development-toys'  => 'cat-development.png',
+            'development'       => 'cat-development.png',
+        ];
+        // Map Hebrew category names to local images (reliable fallback when slugs differ)
+        $name_map = [
+            'מוסיקה'              => 'cat-music.png',
+            'מוסיקה וכלי נגינה'   => 'cat-music.png',
+            'רובוטים'             => 'cat-robots.png',
+            'אבני הרכבה'          => 'cat-blocks.png',
+            'spark blox'          => 'cat-blocks.png',
+            'ספרים'               => 'cat-books.png',
+            'ספרים אינטראקטיביים' => 'cat-books.png',
+            'בובות'               => 'cat-puppets.png',
+            'צעצועי התפתחות'      => 'cat-development.png',
+            'התפתחות'             => 'cat-development.png',
+        ];
         $cats_list = [];
         foreach ($cats_to_show as $i => $cat) :
             $img_src = '';
-            if (!empty($cat->thumbnail_id)) $img_src = wp_get_attachment_url($cat->thumbnail_id);
-            if (!$img_src) { $fb = isset($slug_map[$cat->slug]) ? $slug_map[$cat->slug] : $fallback_imgs[$i % count($fallback_imgs)]; $img_src = $tmpl_dir . '/assets/images/' . $fb; }
+            $name_key = mb_strtolower(trim($cat->name));
+            if (isset($name_map[$name_key]))         $img_src = $tmpl_dir . '/assets/images/' . $name_map[$name_key];
+            elseif (isset($slug_map[$cat->slug]))    $img_src = $tmpl_dir . '/assets/images/' . $slug_map[$cat->slug];
+            if (!$img_src) { $fb = $fallback_imgs[$i % count($fallback_imgs)]; $img_src = $tmpl_dir . '/assets/images/' . $fb; }
             $_tl = get_term_link($cat); $_href = is_wp_error($_tl) ? '#' : $_tl;
             $cats_list[] = ['name' => $cat->name, 'href' => $_href, 'img_url' => $img_src, 'slug' => $cat->slug];
         endforeach;
