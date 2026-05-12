@@ -33,7 +33,7 @@ get_header();
 <section class="spark-hero relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10">
     <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
-      <div class="grid lg:grid-cols-2 min-h-[480px] lg:min-h-[500px]">
+      <div class="grid lg:grid-cols-2 min-h-[420px] lg:min-h-[440px]">
 
         <!-- Text panel -->
         <div class="spark-hero-text order-2 lg:order-1 px-6 sm:px-10 py-10 lg:py-16 relative text-right" style="background-color:#ffffff;background-image:linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),url('<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;">
@@ -72,12 +72,12 @@ get_header();
           <!-- Video controls -->
           <div class="absolute top-4 left-4 flex gap-2 z-10" style="direction:ltr">
             <button id="hero-mute-btn" aria-label="השתק/הפעל שמע"
-              style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+              style="width:36px;height:36px;border-radius:50%;background:#e8614a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2)">
               <svg id="hero-icon-muted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
               <svg id="hero-icon-sound" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
             </button>
             <button id="hero-fullscreen-btn" aria-label="מסך מלא"
-              style="width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.55);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)">
+              style="width:36px;height:36px;border-radius:50%;background:#e8614a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
             </button>
           </div>

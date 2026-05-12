@@ -51,27 +51,25 @@
 @layer components {
   /* Hero video panel — explicit height on mobile/tablet, full height on desktop */
   #hero-video-panel {
-    height: 560px;
+    height: 490px;
   }
   #hero-video,
   #hero-video-2 {
     object-fit: cover;
-    object-position: center 15%;
-    transform: translateY(-5%);
+    object-position: center 20%;
   }
   @media (min-width: 640px) {
-    #hero-video-panel { height: 680px; }
+    #hero-video-panel { height: 600px; }
   }
   @media (min-width: 1024px) {
-    #hero-video-panel { height: 640px; }
+    #hero-video-panel { height: 560px; }
     #hero-video,
     #hero-video-2 {
-      object-position: center 10%;
-      transform: translateY(-8%);
+      object-position: center 15%;
     }
   }
   @media (min-width: 1280px) {
-    #hero-video-panel { height: 720px; }
+    #hero-video-panel { height: 630px; }
   }
 
 
