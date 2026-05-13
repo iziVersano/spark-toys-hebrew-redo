@@ -32,7 +32,7 @@ get_header();
 <!-- ── HERO (TEST: no videos) ── -->
 <section class="spark-hero relative">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10">
-    <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] ring-1 ring-black/5 shadow-pop bg-cream">
+    <div class="relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] lg:rounded-[2.5rem] shadow-pop bg-cream">
       <div class="grid lg:grid-cols-2 min-h-[420px] lg:min-h-[440px]">
 
         <!-- Text panel -->
@@ -64,13 +64,15 @@ get_header();
 
         <!-- Video carousel panel -->
         <div class="relative order-1 lg:order-2 overflow-hidden bg-cream" id="hero-video-panel">
+          <!-- Simple spinner (covered by video once it renders) -->
+          <div class="hero-spinner" aria-hidden="true"></div>
           <!-- Video slides -->
           <div id="hero-carousel" class="absolute inset-0">
-            <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4?v=2" muted playsinline preload="auto" autoplay></video>
-            <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/galgal.mp4?v=2" muted playsinline preload="auto" style="display:none"></video>
+            <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4?v=3" muted playsinline preload="auto" autoplay></video>
+            <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/galgal.mp4?v=3" muted playsinline preload="auto" style="display:none"></video>
           </div>
           <!-- Video controls -->
-          <div class="absolute top-4 left-4 flex gap-2 z-10" style="direction:ltr">
+          <div class="absolute top-4 left-20 flex gap-2 z-20" style="direction:ltr;left:5rem">
             <button id="hero-mute-btn" aria-label="השתק/הפעל שמע"
               style="width:36px;height:36px;border-radius:50%;background:#e8614a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,0.2)">
               <svg id="hero-icon-muted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -81,9 +83,9 @@ get_header();
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
             </button>
           </div>
-          <div aria-hidden="true" class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent pointer-events-none hidden lg:block"></div>
-          <div aria-hidden="true" class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-cream to-transparent pointer-events-none"></div>
-          <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cream to-transparent pointer-events-none lg:hidden"></div>
+          <div aria-hidden="true" class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-cream to-transparent pointer-events-none hidden lg:block z-10"></div>
+          <div aria-hidden="true" class="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-cream to-transparent pointer-events-none z-10"></div>
+          <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cream to-transparent pointer-events-none lg:hidden z-10"></div>
         </div>
       </div>
     </div>
@@ -93,7 +95,7 @@ get_header();
 <!-- ── HOT PRODUCTS OF THE MONTH ── -->
 <?php $hot_products = array_slice($featured_products, 0, 2); ?>
 <?php if (!empty($hot_products)) : ?>
-<section class="py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
+<section class="py-8 lg:py-10 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-col items-center text-center mb-10">
       <div class="inline-flex items-center gap-2 bg-coral-soft text-coral text-sm font-bold px-4 py-2 rounded-full mb-5">
@@ -150,7 +152,7 @@ get_header();
 <?php endif; ?>
 
 <!-- ── CATEGORIES ── -->
-<section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-cream/40">
+<section class="py-10 lg:py-16 px-4 sm:px-6 lg:px-8 bg-cream/40">
   <div class="mx-auto max-w-7xl">
     <div class="relative flex flex-col items-center text-center mb-10 lg:mb-14 rounded-3xl px-6 py-10 overflow-hidden">
       <!-- soft glow blobs -->
@@ -161,8 +163,7 @@ get_header();
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
         קטגוריות
       </div>
-      <h2 class="relative text-5xl sm:text-6xl lg:text-7xl font-extrabold text-balance text-navy leading-[1.05] flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-        <img src="<?php echo esc_url($tmpl_dir); ?>/assets/images/pinwheel-icon.svg" alt="" aria-hidden="true" class="h-12 sm:h-14 lg:h-16 w-auto shrink-0">
+      <h2 class="relative text-5xl sm:text-6xl lg:text-7xl font-extrabold text-balance text-navy leading-[1.05]">
         גלו עולם של <span class="text-coral">משחק ולמידה</span>
       </h2>
       <p class="relative mt-5 text-lg sm:text-xl text-muted-foreground max-w-2xl">מגוון רחב של קטגוריות שיתאימו לכל ילד ולכל שלב התפתחותי.</p>
@@ -258,7 +259,7 @@ get_header();
 </section>
 
 <!-- ── STARS ── -->
-<section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+<section class="py-10 lg:py-16 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-col items-center text-center mb-10">
       <div class="inline-flex items-center gap-2 bg-sun-soft text-sun text-sm font-bold px-4 py-2 rounded-full mb-5">
@@ -285,7 +286,7 @@ get_header();
 </section>
 
 <!-- ── BENEFITS ── -->
-<section id="benefits" class="relative px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+<section id="benefits" class="relative px-4 sm:px-6 lg:px-8 py-7 sm:py-10 lg:py-10">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-col items-center text-center mb-8">
       <div class="inline-flex items-center gap-2 bg-mint-soft text-mint text-sm font-bold px-4 py-2 rounded-full mb-5">
@@ -328,7 +329,7 @@ get_header();
 </section>
 
 <!-- ── PRODUCTS ── -->
-<section class="py-20 lg:py-28 px-4 sm:px-6 lg:px-8">
+<section class="py-14 lg:py-20 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-col items-center text-center mb-14">
       <div class="inline-flex items-center gap-2 bg-sky-soft text-sky text-sm font-bold px-4 py-2 rounded-full mb-5">
@@ -396,7 +397,7 @@ get_header();
 </section>
 
 <!-- ── WHY US ── -->
-<section class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-cream/40">
+<section class="py-10 lg:py-14 px-4 sm:px-6 lg:px-8 bg-cream/40">
   <div class="mx-auto max-w-7xl">
     <div class="flex flex-col items-center text-center mb-14">
       <div class="inline-flex items-center gap-2 bg-lilac-soft text-lilac text-sm font-bold px-4 py-2 rounded-full mb-5">
@@ -438,7 +439,7 @@ get_header();
 </section>
 
 <!-- ── ABOUT BANNER ── -->
-<section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+<section class="py-10 lg:py-16 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center bg-white rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-10 lg:p-14 shadow-card border border-border/60 overflow-hidden">
       <!-- Subtle background accents -->
@@ -495,7 +496,7 @@ get_header();
 </section>
 
 <!-- ── RETAILERS ── -->
-<section class="py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+<section class="py-10 lg:py-14 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
     <div class="relative bg-gradient-to-br from-lilac-soft via-sky-soft to-cream rounded-[36px] p-6 sm:p-10 lg:p-12 overflow-hidden">
       <div class="grid lg:grid-cols-2 gap-8 items-center">
@@ -549,7 +550,7 @@ get_header();
 </section>
 
 <!-- ── CONTACT ── -->
-<section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+<section class="py-10 lg:py-16 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-3xl">
     <div class="flex flex-col items-center text-center mb-10">
       <div class="inline-flex items-center gap-2 bg-coral-soft text-coral text-sm font-bold px-4 py-2 rounded-full mb-5">

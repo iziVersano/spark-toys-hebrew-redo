@@ -84,6 +84,28 @@
     pointer-events: auto;
   }
 
+  /* Simple spinner — sits behind the video, hidden once video covers it */
+  .hero-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 56px;
+    height: 56px;
+    margin: -28px 0 0 -28px;
+    border: 5px solid #fce8e3;
+    border-top-color: #e8614a;
+    border-radius: 50%;
+    animation: hero-spin 0.9s linear infinite;
+    z-index: 0;
+  }
+  #hero-carousel {
+    z-index: 2;
+  }
+  @keyframes hero-spin {
+    to { transform: rotate(360deg); }
+  }
+
+
   /* Page loader */
   #spark-loader {
     position: fixed;
