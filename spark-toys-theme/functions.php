@@ -2,6 +2,12 @@
 defined('ABSPATH') || exit;
 
 /* ──────────────────────────────────────────────
+   Spark Editor (admin UI + REST endpoints)
+────────────────────────────────────────────── */
+require_once get_template_directory() . '/inc/rest-endpoints.php';
+require_once get_template_directory() . '/inc/admin-spark-editor.php';
+
+/* ──────────────────────────────────────────────
    Theme support
 ────────────────────────────────────────────── */
 function spark_setup() {
@@ -23,7 +29,7 @@ add_action('after_setup_theme', 'spark_setup');
    Enqueue assets
 ────────────────────────────────────────────── */
 function spark_enqueue() {
-    $v = '1.4.0';
+    $v = '1.5.9';
     $dir = get_template_directory_uri();
 
     wp_enqueue_style('spark-fonts', 'https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800;900&display=swap', [], null);

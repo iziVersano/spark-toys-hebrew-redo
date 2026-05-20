@@ -1,0 +1,41 @@
+.spark-editor-wrap { max-width: 1100px; }
+.spark-editor-tabs .components-tab-panel__tabs { margin-bottom: 16px; }
+
+.spark-section { background: #fff; border: 1px solid #e2e4e7; padding: 20px; border-radius: 6px; }
+.spark-help { color: #50575e; margin: 0 0 16px; }
+
+.spark-slot { padding: 16px 0; border-bottom: 1px solid #f0f0f1; }
+.spark-slot:last-child { border-bottom: 0; }
+.spark-slot h3 { margin: 0 0 12px; }
+.spark-slot-row { display: grid; grid-template-columns: 320px 1fr; gap: 20px; align-items: start; }
+.spark-preview { width: 320px; aspect-ratio: 16/9; background: #f6f7f7; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.spark-preview video, .spark-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.spark-preview-empty { color: #8c8f94; font-size: 13px; }
+
+.spark-slot-actions { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.spark-slot-actions .components-button { min-width: 160px; justify-content: center; }
+.spark-url { font-family: monospace; font-size: 12px; color: #50575e; word-break: break-all; margin: 4px 0 0; }
+
+.spark-cat-row {
+    display: grid;
+    grid-template-columns: 220px 220px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f1;
+    align-items: start;
+}
+.spark-cat-row:last-child { border-bottom: 0; }
+.spark-cat-meta h3 { margin: 0 0 4px; }
+.spark-cat-meta code { background: #f0f0f1; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+.spark-cat-image { display: flex; flex-direction: column; gap: 8px; }
+.spark-cat-image img { width: 220px; height: 140px; object-fit: cover; border-radius: 6px; display: block; background: #f6f7f7; }
+.spark-cat-image .spark-preview-empty {
+    width: 220px; height: 140px; border-radius: 6px; background: #f6f7f7;
+    display: flex; align-items: center; justify-content: center;
+}
+.spark-cat-title { display: flex; flex-direction: column; gap: 8px; }
+
+@media (max-width: 900px) {
+    .spark-slot-row, .spark-cat-row { grid-template-columns: 1fr; }
+    .spark-preview, .spark-cat-image img, .spark-cat-image .spark-preview-empty { width: 100%; }
+}

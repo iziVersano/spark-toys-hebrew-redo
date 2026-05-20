@@ -1,87 +1,156 @@
 <?php
-defined('ABSPATH') || exit;
+/**
+ * Cart Page
+ *
+ * Adapted from Bridge theme's cart template for use with the Spark Toys theme.
+ * Uses standard WooCommerce hooks and structure so cart updates, coupons,
+ * quantity changes and the proceed-to-checkout flow all work as WC expects.
+ *
+ * @package SparkToys
+ */
+
+defined( 'ABSPATH' ) || exit;
+
 get_header();
-?>
-<main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
 
-  <h1 class="text-4xl font-extrabold text-navy mb-10">עגלת הקניות</h1>
+do_action( 'woocommerce_before_cart' ); ?>
 
-  <?php wc_print_notices(); ?>
+<main class="woocommerce mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 lg:py-16">
+  <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+    <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-  <?php if (WC()->cart->is_empty()) : ?>
-  <div class="flex flex-col items-center justify-center py-24 gap-6 text-center">
-    <div class="h-24 w-24 rounded-3xl bg-cream flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-navy/30"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-    </div>
-    <p class="text-2xl font-bold text-navy">העגלה ריקה</p>
-    <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-       class="rounded-full bg-navy text-white px-8 py-3 font-bold hover:shadow-pop transition-all">
-      המשיכו לקנות
-    </a>
+    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+      <thead>
+        <tr>
+          <th class="product-remove"><span class="screen-reader-text"><?php esc_html_e( 'Remove item', 'spark-toys' ); ?></span></th>
+          <th class="product-thumbnail"><span class="screen-reader-text"><?php esc_html_e( 'Thumbnail image', 'spark-toys' ); ?></span></th>
+          <th class="product-name"><?php esc_html_e( 'Product', 'spark-toys' ); ?></th>
+          <th class="product-price"><?php esc_html_e( 'Price', 'spark-toys' ); ?></th>
+          <th class="product-quantity"><?php esc_html_e( 'Quantity', 'spark-toys' ); ?></th>
+          <th class="product-subtotal"><?php esc_html_e( 'Subtotal', 'spark-toys' ); ?></th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php do_action( 'woocommerce_before_cart_contents' ); ?>
+
+        <?php
+        foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+          $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+          $product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
+          $product_name = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+
+          if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+            $product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+            ?>
+            <tr class="woocommerce-cart-form__cart-item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+
+              <td class="product-remove">
+                <?php
+                  echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
+                    '<a href="%s" class="remove" aria-label="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
+                    esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+                    esc_attr( sprintf( __( 'Remove %s from cart', 'spark-toys' ), $product_name ) ),
+                    esc_attr( $product_id ),
+                    esc_attr( $_product->get_sku() )
+                  ), $cart_item_key );
+                ?>
+              </td>
+
+              <td class="product-thumbnail">
+                <?php
+                $thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key );
+                if ( ! $product_permalink ) {
+                  echo $thumbnail;
+                } else {
+                  printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail );
+                }
+                ?>
+              </td>
+
+              <td class="product-name" data-title="<?php esc_attr_e( 'Product', 'spark-toys' ); ?>">
+                <?php
+                  if ( ! $product_permalink ) {
+                    echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', esc_html( $_product->get_name() ), $cart_item, $cart_item_key ) . '&nbsp;' );
+                  } else {
+                    echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), esc_html( $_product->get_name() ) ), $cart_item, $cart_item_key ) );
+                  }
+
+                  echo wc_get_formatted_cart_item_data( $cart_item );
+
+                  if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
+                    echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'spark-toys' ) . '</p>', $product_id ) );
+                  }
+                ?>
+              </td>
+
+              <td class="product-price" data-title="<?php esc_attr_e( 'Price', 'spark-toys' ); ?>">
+                <?php echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); ?>
+              </td>
+
+              <td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'spark-toys' ); ?>">
+                <?php
+                if ( $_product->is_sold_individually() ) {
+                  $product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+                } else {
+                  $product_quantity = woocommerce_quantity_input( array(
+                    'input_name'   => "cart[{$cart_item_key}][qty]",
+                    'input_value'  => $cart_item['quantity'],
+                    'max_value'    => $_product->get_max_purchase_quantity(),
+                    'min_value'    => '0',
+                    'product_name' => $product_name,
+                  ), $_product, false );
+                }
+                echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
+                ?>
+              </td>
+
+              <td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'spark-toys' ); ?>">
+                <?php echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); ?>
+              </td>
+            </tr>
+            <?php
+          }
+        }
+        ?>
+
+        <?php do_action( 'woocommerce_cart_contents' ); ?>
+
+        <tr>
+          <td colspan="6" class="actions">
+            <?php if ( wc_coupons_enabled() ) { ?>
+              <div class="coupon">
+                <label for="coupon_code"><?php esc_html_e( 'Coupon:', 'spark-toys' ); ?></label>
+                <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'spark-toys' ); ?>" />
+                <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'spark-toys' ); ?>" />
+                <?php do_action( 'woocommerce_cart_coupon' ); ?>
+              </div>
+            <?php } ?>
+
+            <input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update cart', 'spark-toys' ); ?>" />
+
+            <?php do_action( 'woocommerce_cart_actions' ); ?>
+
+            <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+          </td>
+        </tr>
+
+        <?php do_action( 'woocommerce_after_cart_contents' ); ?>
+      </tbody>
+    </table>
+    <?php do_action( 'woocommerce_after_cart_table' ); ?>
+  </form>
+
+  <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
+
+  <div class="cart-collaterals clearfix">
+    <?php do_action( 'woocommerce_cart_collaterals' ); ?>
+
+    <?php if ( is_cart() ) : ?>
+      <?php woocommerce_shipping_calculator(); ?>
+    <?php endif; ?>
   </div>
 
-  <?php else : ?>
-
-  <div class="grid lg:grid-cols-3 gap-10">
-    <!-- Items -->
-    <div class="lg:col-span-2 space-y-4">
-      <?php foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) :
-          $_product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
-          $img_id   = $_product->get_image_id();
-          $img_src  = $img_id ? wp_get_attachment_image_url($img_id, 'thumbnail') : '';
-      ?>
-      <div class="flex gap-4 p-4 bg-cream rounded-2xl">
-        <div class="relative h-24 w-24 rounded-xl overflow-hidden bg-white shrink-0">
-          <?php if ($img_src) : ?>
-          <img src="<?php echo esc_url($img_src); ?>" alt="<?php echo esc_attr($_product->get_name()); ?>"
-               class="object-contain p-1 w-full h-full">
-          <?php endif; ?>
-        </div>
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-bold text-navy line-clamp-2"><?php echo esc_html($_product->get_name()); ?></p>
-          <p class="text-base font-extrabold text-coral mt-1"><?php echo wp_kses_post($_product->get_price_html()); ?></p>
-          <div class="flex items-center gap-3 mt-2">
-            <form method="post" class="flex items-center gap-2">
-              <?php woocommerce_update_product_quantity($cart_item_key); ?>
-              <input type="number" name="cart[<?php echo esc_attr($cart_item_key); ?>][qty]"
-                     value="<?php echo esc_attr($cart_item['quantity']); ?>" min="1"
-                     class="h-8 w-16 rounded-lg border border-border text-center text-sm text-navy">
-            </form>
-            <a href="<?php echo esc_url(wc_get_cart_remove_url($cart_item_key)); ?>"
-               class="text-muted-foreground hover:text-coral transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-      <?php endforeach; ?>
-
-      <div class="flex justify-between mt-4">
-        <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
-           class="text-sm font-medium text-navy hover:text-coral transition-colors">
-          ← המשיכו לקנות
-        </a>
-        <button name="update_cart" type="submit" form="cart-form"
-                class="text-sm font-medium text-navy hover:text-coral transition-colors">
-          עדכון עגלה
-        </button>
-      </div>
-    </div>
-
-    <!-- Totals -->
-    <div class="lg:col-span-1">
-      <div class="bg-cream rounded-2xl p-6 border border-border/50 space-y-4">
-        <h2 class="text-xl font-extrabold text-navy">סיכום הזמנה</h2>
-        <?php woocommerce_cart_totals(); ?>
-        <a href="<?php echo esc_url(wc_get_checkout_url()); ?>"
-           class="flex items-center justify-center gap-2 w-full h-13 rounded-full bg-navy text-white font-bold text-base hover:shadow-pop transition-all hover:-translate-y-0.5 py-3.5">
-          לתשלום
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <?php endif; ?>
-
+  <?php do_action( 'woocommerce_after_cart' ); ?>
 </main>
+
 <?php get_footer(); ?>

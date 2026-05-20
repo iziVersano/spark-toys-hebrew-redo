@@ -13,10 +13,11 @@
     return '₪' + Math.round(parseInt(minorUnits, 10) / 100).toLocaleString('he-IL');
   }
 
-  function setLoading(val) {
+  function setLoading(val, targetBtn) {
     isLoading = val;
     document.querySelectorAll('.add-to-cart-btn').forEach(function (btn) {
       btn.disabled = val;
+      btn.classList.toggle('is-loading', val && btn === targetBtn);
     });
   }
 
@@ -144,13 +145,26 @@
 
   /* ── API calls ── */
   function apiFetch(url, options) {
-    var headers = Object.assign({ 'Content-Type': 'application/json', 'Nonce': wcNonce }, options.headers || {});
+    var headers = Object.assign({
+      'Content-Type': 'application/json',
+      'Nonce': wcNonce,
+      'X-WC-Store-API-Nonce': wcNonce
+    }, options.headers || {});
     return fetch(url, Object.assign({}, options, { headers: headers }))
       .then(function (res) {
         var newNonce = res.headers.get('X-WC-Store-API-Nonce') || res.headers.get('Nonce');
         if (newNonce) wcNonce = newNonce;
-        if (!res.ok) return res.json().then(function (e) { throw new Error(e.message || 'Cart error'); });
-        return res.json();
+        return res.text().then(function (text) {
+          var data = null;
+          if (text) {
+            try { data = JSON.parse(text); } catch (e) { /* ignore non-JSON */ }
+          }
+          if (!res.ok) {
+            var msg = (data && data.message) ? data.message : ('HTTP ' + res.status);
+            throw new Error(msg);
+          }
+          return data || {};
+        });
       });
   }
 
@@ -160,18 +174,63 @@
       .catch(function (err) { console.warn('Cart fetch failed:', err); });
   }
 
-  function addItem(productId) {
+  function addItem(productId, btn) {
     if (isLoading) return;
-    setLoading(true);
+    setLoading(true, btn);
+    var qty = 1;
+    if (btn && btn.dataset.qtySource) {
+      var qtyEl = document.querySelector(btn.dataset.qtySource);
+      if (qtyEl) qty = Math.max(1, parseInt(qtyEl.value, 10) || 1);
+    }
+    var productName = (btn && btn.dataset.productName) ? btn.dataset.productName : '';
     return apiFetch(CART_BASE + '/add-item', {
       method: 'POST',
       credentials: 'include',
-      body: JSON.stringify({ id: productId, quantity: 1 }),
+      body: JSON.stringify({ id: productId, quantity: qty }),
     })
-      .then(function () { return fetchCart(); })
-      .then(function () { openDrawer(); })
-      .catch(function (err) { alert('שגיאה: ' + err.message); })
-      .finally(function () { setLoading(false); });
+      .then(function () {
+        try {
+          sessionStorage.setItem('sparkCartNotice', JSON.stringify({ name: productName, t: Date.now() }));
+        } catch (e) { /* sessionStorage may be unavailable */ }
+        window.location.reload();
+      })
+      .catch(function (err) {
+        console.error('Add to cart failed:', err);
+        alert('שגיאה: ' + err.message);
+        setLoading(false);
+      });
+  }
+
+  /* ── Success banner (after page reload from add-to-cart) ── */
+  function showSuccessBanner() {
+    var raw;
+    try { raw = sessionStorage.getItem('sparkCartNotice'); } catch (e) { return; }
+    if (!raw) return;
+    try { sessionStorage.removeItem('sparkCartNotice'); } catch (e) {}
+
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (!data || (Date.now() - data.t) > 30000) return; // ignore stale (>30s)
+
+    var cartUrl = (window.sparkCart && sparkCart.siteUrl) ? sparkCart.siteUrl + '/cart/' : '/cart/';
+    var name = data.name || 'המוצר';
+    var msg  = '"' + name + '" נוסף לסל הקניות.';
+
+    var wrap = document.createElement('div');
+    wrap.className = 'spark-cart-notice';
+    wrap.setAttribute('role', 'status');
+    wrap.innerHTML =
+      '<a href="' + cartUrl + '" class="spark-cart-notice-btn">מעבר לסל הקניות</a>' +
+      '<span class="spark-cart-notice-msg">' + escHtml(msg) + '</span>' +
+      '<button type="button" class="spark-cart-notice-close" aria-label="סגור">×</button>';
+
+    // Insert at top of <main> if present, otherwise top of body
+    var target = document.querySelector('main') || document.body;
+    target.insertBefore(wrap, target.firstChild);
+
+    wrap.querySelector('.spark-cart-notice-close').addEventListener('click', function () {
+      wrap.remove();
+    });
   }
 
   function removeItem(key) {
@@ -230,13 +289,18 @@
       });
     }
 
-    /* Add-to-cart buttons */
+    /* Add-to-cart buttons — capture phase + preventDefault so nothing else can hijack */
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.add-to-cart-btn');
       if (!btn) return;
+      e.preventDefault();
+      e.stopPropagation();
       var id = parseInt(btn.dataset.productId, 10);
-      if (id) addItem(id);
-    });
+      if (id) addItem(id, btn);
+    }, true);
+
+    /* Show success banner if user just added an item */
+    showSuccessBanner();
 
     /* Initial fetch */
     fetchCart();

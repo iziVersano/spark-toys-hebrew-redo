@@ -36,8 +36,8 @@ get_header();
       <div class="grid lg:grid-cols-2 min-h-[420px] lg:min-h-[440px]">
 
         <!-- Text panel -->
-        <div class="spark-hero-text order-2 lg:order-1 px-6 sm:px-10 py-10 lg:py-16 relative text-right" style="background-color:#ffffff;background-image:linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),url('<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;">
-          <div class="absolute inset-x-0 text-center" style="top:50%;transform:translateY(-60%);padding:0 2rem">
+        <div class="spark-hero-text order-2 lg:order-1 px-6 sm:px-10 py-10 lg:py-16 relative text-right flex flex-col gap-8 lg:block" style="background-color:#ffffff;background-image:linear-gradient(rgba(255,255,255,0.35),rgba(255,255,255,0.35)),url('<?php echo esc_url($tmpl_dir); ?>/assets/images/hero-bg.png');background-size:cover;background-position:center;background-repeat:no-repeat;">
+          <div class="text-center lg:absolute lg:inset-x-0" style="padding:0 2rem">
             <h1 style="font-family:'Heebo',sans-serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.08;letter-spacing:-0.03em;color:#111111;margin:0">
               משחק חכם<br>
               <span style="color:#e8614a;display:block">מתחיל בסקרנות.</span>
@@ -46,18 +46,12 @@ get_header();
               צעצועים דוברי עברית שמפתחים חשיבה, דמיון ולמידה דרך משחק.
             </p>
           </div>
-          <div class="flex flex-col gap-4 absolute" style="bottom:2.5rem;left:2.5rem;right:2.5rem">
+          <div class="flex flex-col gap-4 lg:absolute">
             <a href="<?php echo esc_url(get_post_type_archive_link('product')); ?>"
                class="group inline-flex items-center justify-center gap-3 h-[58px] rounded-2xl font-extrabold text-lg text-white transition-all duration-200 hover:-translate-y-1 hover:shadow-pop whitespace-nowrap"
                style="background:linear-gradient(135deg,#e8614a 0%,#d94f38 100%);box-shadow:0 6px 24px -4px rgba(232,97,74,.55);width:100%">
               גלו את המוצרים
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform duration-200"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            </a>
-            <a href="#benefits"
-               class="group inline-flex items-center justify-center gap-3 h-[58px] rounded-2xl font-extrabold text-lg transition-all duration-200 hover:-translate-y-1 whitespace-nowrap"
-               style="background:rgba(255,255,255,0.7);backdrop-filter:blur(8px);border:2px solid rgba(232,97,74,0.35);color:#1e2a4a;box-shadow:0 4px 16px -4px rgba(30,42,74,.12);width:100%">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8614a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              לפי גיל והתפתחות
             </a>
           </div>
         </div>
@@ -68,8 +62,14 @@ get_header();
           <div class="hero-spinner" aria-hidden="true"></div>
           <!-- Video slides -->
           <div id="hero-carousel" class="absolute inset-0">
-            <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/hero.mp4?v=3" muted playsinline preload="auto" autoplay></video>
-            <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($tmpl_dir); ?>/assets/videos/galgal.mp4?v=3" muted playsinline preload="auto" style="display:none"></video>
+            <?php
+              $spark_hero_v1 = get_theme_mod('spark_hero_video_1', '');
+              $spark_hero_v2 = get_theme_mod('spark_hero_video_2', '');
+              $spark_hero_v1 = $spark_hero_v1 ?: ($tmpl_dir . '/assets/videos/hero.mp4?v=3');
+              $spark_hero_v2 = $spark_hero_v2 ?: ($tmpl_dir . '/assets/videos/galgal.mp4?v=3');
+            ?>
+            <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($spark_hero_v1); ?>" muted playsinline preload="auto" autoplay></video>
+            <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($spark_hero_v2); ?>" muted playsinline preload="auto" style="display:none"></video>
           </div>
           <!-- Video controls -->
           <div class="absolute top-4 left-20 flex gap-2 z-20" style="direction:ltr;left:5rem">
@@ -209,12 +209,21 @@ get_header();
         $cats_list = [];
         foreach ($cats_to_show as $i => $cat) :
             $img_src = '';
-            $name_key = mb_strtolower(trim($cat->name));
-            if (isset($name_map[$name_key]))         $img_src = $tmpl_dir . '/assets/images/' . $name_map[$name_key];
-            elseif (isset($slug_map[$cat->slug]))    $img_src = $tmpl_dir . '/assets/images/' . $slug_map[$cat->slug];
+            // 1) Per-category override from Spark Editor (term meta)
+            $override_img   = (string) get_term_meta($cat->term_id, 'spark_image_url', true);
+            $override_title = (string) get_term_meta($cat->term_id, 'spark_display_title', true);
+            if ($override_img) {
+                $img_src = $override_img;
+            }
+            // 2) Hebrew name map → 3) slug map → 4) rotating fallback
+            if (!$img_src) {
+                $name_key = mb_strtolower(trim($cat->name));
+                if (isset($name_map[$name_key]))         $img_src = $tmpl_dir . '/assets/images/' . $name_map[$name_key];
+                elseif (isset($slug_map[$cat->slug]))    $img_src = $tmpl_dir . '/assets/images/' . $slug_map[$cat->slug];
+            }
             if (!$img_src) { $fb = $fallback_imgs[$i % count($fallback_imgs)]; $img_src = $tmpl_dir . '/assets/images/' . $fb; }
             $_tl = get_term_link($cat); $_href = is_wp_error($_tl) ? '#' : $_tl;
-            $cats_list[] = ['name' => $cat->name, 'href' => $_href, 'img_url' => $img_src, 'slug' => $cat->slug];
+            $cats_list[] = ['name' => ($override_title ?: $cat->name), 'href' => $_href, 'img_url' => $img_src, 'slug' => $cat->slug];
         endforeach;
     endif;
     $total = count($cats_list);

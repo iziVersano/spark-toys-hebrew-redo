@@ -67,6 +67,7 @@
 </div>
 <!-- ── /CART DRAWER ── -->
 
+<!-- SPARK-HEADER-V1.4.2-TEST -->
 <header class="site-header sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border/60">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4 py-3">
 
