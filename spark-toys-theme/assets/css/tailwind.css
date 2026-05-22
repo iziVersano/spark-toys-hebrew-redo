@@ -67,7 +67,8 @@
     height: 490px;
   }
   #hero-video,
-  #hero-video-2 {
+  #hero-video-2,
+  #hero-video-3 {
     object-fit: cover;
     object-position: center 20%;
   }
@@ -77,7 +78,8 @@
   @media (min-width: 1024px) {
     #hero-video-panel { height: 560px; }
     #hero-video,
-    #hero-video-2 {
+    #hero-video-2,
+    #hero-video-3 {
       object-position: center 15%;
     }
   }

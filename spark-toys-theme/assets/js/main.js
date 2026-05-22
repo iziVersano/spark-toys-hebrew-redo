@@ -118,7 +118,8 @@
     /* ── Hero videos: sequential playback ── */
     var videos = [
       document.getElementById('hero-video'),
-      document.getElementById('hero-video-2')
+      document.getElementById('hero-video-2'),
+      document.getElementById('hero-video-3')
     ].filter(Boolean);
 
     var muteBtn       = document.getElementById('hero-mute-btn');

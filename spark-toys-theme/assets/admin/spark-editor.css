@@ -35,6 +35,15 @@
 }
 .spark-cat-title { display: flex; flex-direction: column; gap: 8px; }
 
+.spark-hot-selected, .spark-hot-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 12px 0 20px; }
+.spark-hot-card { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 10px; border: 1px solid #e2e4e7; border-radius: 6px; background: #fff; }
+.spark-hot-card img { width: 64px; height: 64px; object-fit: cover; border-radius: 4px; background: #f6f7f7; }
+.spark-hot-card .spark-preview-empty { width: 64px; height: 64px; border-radius: 4px; background: #f6f7f7; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+.spark-hot-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.spark-hot-meta strong { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.spark-hot-meta code { font-size: 11px; color: #50575e; background: #f0f0f1; padding: 1px 4px; border-radius: 3px; align-self: flex-start; }
+.spark-hot-meta span { font-size: 12px; color: #2271b1; font-weight: 600; }
+
 @media (max-width: 900px) {
     .spark-slot-row, .spark-cat-row { grid-template-columns: 1fr; }
     .spark-preview, .spark-cat-image img, .spark-cat-image .spark-preview-empty { width: 100%; }

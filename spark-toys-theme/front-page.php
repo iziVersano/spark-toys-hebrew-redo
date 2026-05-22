@@ -65,11 +65,14 @@ get_header();
             <?php
               $spark_hero_v1 = get_theme_mod('spark_hero_video_1', '');
               $spark_hero_v2 = get_theme_mod('spark_hero_video_2', '');
+              $spark_hero_v3 = get_theme_mod('spark_hero_video_3', '');
               $spark_hero_v1 = $spark_hero_v1 ?: ($tmpl_dir . '/assets/videos/hero.mp4?v=3');
               $spark_hero_v2 = $spark_hero_v2 ?: ($tmpl_dir . '/assets/videos/galgal.mp4?v=3');
+              $spark_hero_v3 = $spark_hero_v3 ?: ($tmpl_dir . '/assets/videos/soldier.mp4?v=4');
             ?>
             <video id="hero-video" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($spark_hero_v1); ?>" muted playsinline preload="auto" autoplay></video>
             <video id="hero-video-2" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($spark_hero_v2); ?>" muted playsinline preload="auto" style="display:none"></video>
+            <video id="hero-video-3" class="absolute inset-0 h-full w-full object-cover object-top" src="<?php echo esc_url($spark_hero_v3); ?>" muted playsinline preload="auto" style="display:none"></video>
           </div>
           <!-- Video controls -->
           <div class="absolute top-4 left-20 flex gap-2 z-20" style="direction:ltr;left:5rem">
@@ -93,7 +96,20 @@ get_header();
 </section>
 
 <!-- ── HOT PRODUCTS OF THE MONTH ── -->
-<?php $hot_products = array_slice($featured_products, 0, 2); ?>
+<?php
+  // Client override via Spark Editor → "מוצרים חמים" tab
+  $spark_hot_ids = array_values(array_filter(array_map('intval', (array) get_option('spark_hot_product_ids', []))));
+  if ($spark_hot_ids && function_exists('wc_get_products')) {
+      $hot_products = wc_get_products([
+          'include' => $spark_hot_ids,
+          'limit'   => count($spark_hot_ids),
+          'orderby' => 'include',
+          'status'  => 'publish',
+      ]);
+  } else {
+      $hot_products = array_slice($featured_products, 0, 2);
+  }
+?>
 <?php if (!empty($hot_products)) : ?>
 <section class="py-8 lg:py-10 px-4 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-7xl">
@@ -349,9 +365,23 @@ get_header();
       <p class="mt-5 text-lg sm:text-xl text-muted-foreground max-w-2xl">אוסף מובחר של צעצועים אינטראקטיביים שילדים אוהבים והורים בוחרים שוב ושוב.</p>
     </div>
 
-    <?php if (!empty($featured_products)) : ?>
+    <?php
+      // Client override via Spark Editor → "מוצרים מובילים" tab
+      $spark_feat_ids = array_values(array_filter(array_map('intval', (array) get_option('spark_featured_product_ids', []))));
+      if ($spark_feat_ids && function_exists('wc_get_products')) {
+          $kids_love_products = wc_get_products([
+              'include' => $spark_feat_ids,
+              'limit'   => count($spark_feat_ids),
+              'orderby' => 'include',
+              'status'  => 'publish',
+          ]);
+      } else {
+          $kids_love_products = $featured_products;
+      }
+    ?>
+    <?php if (!empty($kids_love_products)) : ?>
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
-      <?php foreach ($featured_products as $i => $product) :
+      <?php foreach ($kids_love_products as $i => $product) :
           $product_id = $product->get_id();
           $img_id     = $product->get_image_id();
           $img_src    = $img_id ? wp_get_attachment_image_url($img_id, 'medium') : '';

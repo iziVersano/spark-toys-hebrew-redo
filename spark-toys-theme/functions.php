@@ -29,7 +29,7 @@ add_action('after_setup_theme', 'spark_setup');
    Enqueue assets
 ────────────────────────────────────────────── */
 function spark_enqueue() {
-    $v = '1.5.9';
+    $v = '1.6.3';
     $dir = get_template_directory_uri();
 
     wp_enqueue_style('spark-fonts', 'https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800;900&display=swap', [], null);
