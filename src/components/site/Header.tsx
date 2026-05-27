@@ -1,6 +1,6 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { Search, User, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import sparkLogo from "@/assets/spark-logo.png";
 
 type NavItem = {
@@ -47,6 +47,12 @@ const navItems: NavItem[] = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+
+  useEffect(() => {
+    setOpen(false);
+    setMobileExpanded(null);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-soft">
