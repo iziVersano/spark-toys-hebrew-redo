@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Search, User, ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import sparkLogo from "@/assets/spark-logo.png";
+import { SearchDialog } from "./SearchDialog";
 
 type NavItem = {
   label: string;
@@ -47,6 +48,7 @@ const navItems: NavItem[] = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-lg border-b border-border/50 shadow-soft">
@@ -98,7 +100,9 @@ export function Header() {
         {/* Actions */}
         <div className="flex items-center gap-1 sm:gap-2">
           <button
+            type="button"
             aria-label="חיפוש"
+            onClick={() => setSearchOpen(true)}
             className="hidden sm:flex h-10 w-10 items-center justify-center rounded-full hover:bg-cream text-navy transition-colors duration-200 cursor-pointer"
           >
             <Search className="h-5 w-5" />
@@ -189,7 +193,14 @@ export function Header() {
 
             {/* Mobile bottom actions */}
             <div className="flex items-center gap-2 pt-3 border-t border-border/50 mt-2">
-              <button className="flex-1 h-11 rounded-full bg-cream flex items-center justify-center gap-2 text-navy text-sm font-semibold cursor-pointer hover:bg-cream-deep transition-colors">
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  setSearchOpen(true);
+                }}
+                className="flex-1 h-11 rounded-full bg-cream flex items-center justify-center gap-2 text-navy text-sm font-semibold cursor-pointer hover:bg-cream-deep transition-colors"
+              >
                 <Search className="h-4 w-4" /> חיפוש
               </button>
               <button className="flex-1 h-11 rounded-full bg-cream flex items-center justify-center gap-2 text-navy text-sm font-semibold cursor-pointer hover:bg-cream-deep transition-colors">
@@ -206,6 +217,8 @@ export function Header() {
           </nav>
         </div>
       )}
+
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </header>
   );
 }
