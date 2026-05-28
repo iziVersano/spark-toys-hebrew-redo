@@ -29,7 +29,7 @@ add_action('after_setup_theme', 'spark_setup');
    Enqueue assets
 ────────────────────────────────────────────── */
 function spark_enqueue() {
-    $v = '1.6.3';
+    $v = '1.6.4';
     $dir = get_template_directory_uri();
 
     wp_enqueue_style('spark-fonts', 'https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Heebo:wght@500;700;800;900&display=swap', [], null);
@@ -155,3 +155,14 @@ function spark_contact_submit() {
 }
 add_action('wp_ajax_spark_contact', 'spark_contact_submit');
 add_action('wp_ajax_nopriv_spark_contact', 'spark_contact_submit');
+
+/* ──────────────────────────────────────────────
+   Site search: restrict to WooCommerce products
+────────────────────────────────────────────── */
+add_action('pre_get_posts', function ($query) {
+    if (is_admin() || !$query->is_main_query() || !$query->is_search()) {
+        return;
+    }
+    $query->set('post_type', 'product');
+    $query->set('post_status', 'publish');
+});
